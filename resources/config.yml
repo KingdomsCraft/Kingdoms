@@ -1,0 +1,22 @@
+# Yaml file by AndrewBit.
+# _   _  _  _  ___  __      __    _  _  ____  
+#( )_( )( \/ )/ __)(  )    /__\  ( \( )(  _ \ 
+# ) _ (  \  / \__ \ )(__  /(__)\  )  (  )(_) )
+#(_) (_) (__) (___/(____)(__)(__)(_)\_)(____/ 
+# hysland.com
+---
+mysql:
+  address: "build.hysland.com"
+  username: "root"
+  password: "3B7EE8DE6185"
+  database: "kingdoms"
+  port: 3306
+# Default language
+default-language: "english"
+# Prices
+# 0 = free
+join-price: 0
+leave-price: 25
+# The map where people can set kingdoms homes
+home: "Forest"
+...
