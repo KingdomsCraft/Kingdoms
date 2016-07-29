@@ -10,7 +10,7 @@ namespace Kingdoms\database;
 
 use Kingdoms\database\mysql\MySQLCredentials;
 
-class KingdomsDatabase extends Database {
+class PluginDatabase extends Database {
 
     /** @var MySQLCredentials */
     private $credentials;
