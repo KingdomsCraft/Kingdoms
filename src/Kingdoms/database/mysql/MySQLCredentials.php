@@ -43,6 +43,15 @@ class MySQLCredentials {
     }
 
     /**
+     * Return \mysqli instance
+     *
+     * @return \mysqli
+     */
+    public function getDatabase() {
+        return new \mysqli($this->host, $this->username, $this->password, $this->database, $this->port);
+    }
+
+    /**
      * Return database host (aka address)
      *
      * @return string
