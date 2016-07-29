@@ -1,12 +1,6 @@
-# plugin.yml file by AndrewBit.
-# _   _  _  _  ___  __      __    _  _  ____
-#( )_( )( \/ )/ __)(  )    /__\  ( \( )(  _ \
-# ) _ (  \  / \__ \ )(__  /(__)\  )  (  )(_) )
-#(_) (_) (__) (___/(____)(__)(__)(_)\_)(____/
-# hysland.com
 name: Kingdoms
 author: AndrewBit
 website: http://kingdomscraft.net
-main: Kingdoms\Base
+main: Kingdoms\Main
 version: "0.0.1-dev#1"
 api: [2.0.0]

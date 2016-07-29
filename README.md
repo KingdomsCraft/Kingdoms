@@ -1,3 +1,3 @@
-### Kingdoms and Guilds plugin
+### Kingdoms and Guilds
 
 > Currently being developed by AndrewBit4
