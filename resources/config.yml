@@ -1,3 +1,5 @@
 # Kingdoms config file.
 ---
+#
+msgFile: "english.json"
 ...
