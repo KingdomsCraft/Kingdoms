@@ -8,6 +8,7 @@
 
 namespace Kingdoms;
 
+use Kingdoms\database\PluginDatabase;
 use pocketmine\plugin\PluginBase;
 
 class Main extends PluginBase {
@@ -21,6 +22,9 @@ class Main extends PluginBase {
     /** @var LanguageManager */
     private $languageManager;
 
+    /** @var PluginDatabase */
+    private $pluginDatabase;
+
     public function onLoad() {
         if(!self::$object instanceof Main) {
             self::$object = $this;
@@ -29,6 +33,8 @@ class Main extends PluginBase {
 
     public function onEnable() {
         $this->initialize();
+        $this->setLanguageManager();
+        $this->setPluginDatabase();
         $this->setListener();
         $this->getLogger()->info("Kingdoms was enabled.");
     }
@@ -72,6 +78,15 @@ class Main extends PluginBase {
     }
 
     /**
+     * Return PluginDatabase instance
+     *
+     * @return PluginDatabase
+     */
+    public function getPluginDatabase() {
+        return $this->pluginDatabase;
+    }
+
+    /**
      * Register EventListener instance
      */
     public function setListener() {
@@ -83,6 +98,13 @@ class Main extends PluginBase {
      */
     public function setLanguageManager() {
         $this->languageManager = new LanguageManager($this);
+    }
+
+    /**
+     * Register PluginDatabase instance
+     */
+    public function setPluginDatabase() {
+        $this->pluginDatabase = new PluginDatabase($this);
     }
 
 }
