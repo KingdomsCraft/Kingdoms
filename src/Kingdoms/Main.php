@@ -43,6 +43,15 @@ class Main extends PluginBase {
     }
 
     /**
+     * Return Main instance
+     *
+     * @return Main
+     */
+    public static function getInstance() {
+        return self::$object;
+    }
+
+    /**
      * Return EventListener instance
      *
      * @return EventListener
