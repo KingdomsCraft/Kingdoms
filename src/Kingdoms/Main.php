@@ -28,6 +28,7 @@ class Main extends PluginBase {
     }
 
     public function onEnable() {
+        $this->initialize();
         $this->setListener();
         $this->getLogger()->info("Kingdoms was enabled.");
     }
@@ -40,6 +41,7 @@ class Main extends PluginBase {
         if(!is_dir($this->getDataFolder())) @mkdir($this->getDataFolder());
         if(!is_dir($path = $this->getDataFolder() . "messages")) @mkdir($path);
         $this->saveResource("messages/english.json");
+        $this->saveResource("database.json");
     }
 
     /**
