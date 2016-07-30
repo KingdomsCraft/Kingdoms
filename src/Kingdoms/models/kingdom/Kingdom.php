@@ -8,7 +8,7 @@
 
 namespace Kingdoms\models\kingdom;
 
-use Kingdoms\KingdomsPlayer;
+use Kingdoms\KingdomPlayer;
 use Kingdoms\Main;
 use pocketmine\level\Level;
 use pocketmine\level\Position;
@@ -40,19 +40,19 @@ class Kingdom {
      * Kingdom constructor.
      * @param Main $plugin
      * @param string $name
-     * @param int $points
+     * @param $points
      * @param string $motto
-     * @param int $lostWars
-     * @param int $wonWars
+     * @param $lostWars
+     * @param $wonWars
      * @param string $home
      */
     public function __construct(Main $plugin, $name, $points, $motto, $lostWars, $wonWars, $home) {
         $this->plugin = $plugin;
         $this->name = $name;
-        $this->points = $points;
+        $this->points = (int) $points;
         $this->motto = $motto;
-        $this->lostWars = $lostWars;
-        $this->wonWars = $wonWars;
+        $this->lostWars = (int) $lostWars;
+        $this->wonWars = (int) $wonWars;
         $this->home = $home;
     }
 
@@ -139,7 +139,7 @@ class Kingdom {
      */
     public function getPlayersByKingdom() {
         $players = [];
-        /** @var KingdomsPlayer $player */
+        /** @var KingdomPlayer $player */
         foreach($this->plugin->getServer()->getOnlinePlayers() as $player) {
             if($player->getKingdom() == $this) {
                 $players[] = $player;
