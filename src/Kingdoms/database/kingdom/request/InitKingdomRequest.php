@@ -69,7 +69,14 @@ class InitKingdomRequest extends MySQLRequest {
                     break;
                 case self::MYSQL_SUCCESS:
                     $kingdom = $plugin->getKingdomManager()->getKingdom($this->name);
-                    // ToDo: init kingdom
+                    $row = $result[1];
+                    $kingdom->setName($row["name"]);
+                    $kingdom->setPoints($row["points"]);
+                    $kingdom->setMotto($row["motto"]);
+                    $kingdom->setLostWars($row["lostWars"]);
+                    $kingdom->setWonWars($row["wonWars"]);
+                    $kingdom->setHome($row["home"]);
+                    $server->getLogger()->debug("Kingdom {$this->name} was successfully initialized");
                     break;
             }
         }
