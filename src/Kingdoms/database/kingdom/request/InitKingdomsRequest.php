@@ -56,7 +56,6 @@ class InitKingdomsRequest extends MySQLRequest {
                     throw new \RuntimeException($result[1]);
                     break;
                 case self::MYSQL_SUCCESS:
-                    /** @var \mysqli_result $result */
                     $database = $this->getDatabase();
                     $result = $database->query("\nSELECT * FROM kingdoms");
                     $kingdomManager = $plugin->getKingdomManager();
