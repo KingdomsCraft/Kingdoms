@@ -8,6 +8,7 @@
 
 namespace Kingdoms;
 
+use Kingdoms\language\LanguageManager;
 use Kingdoms\models\guild\Guild;
 use Kingdoms\models\kingdom\Kingdom;
 use pocketmine\Player;
@@ -28,6 +29,24 @@ class KingdomPlayer extends Player {
 
     /** @var Guild|null */
     private $guild = null;
+
+    /** @var bool */
+    private $admin = false;
+
+    /**
+     * Return if player rank is superior
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function isRankSuperior($id) {
+        if($this->kingdomRank - $id >= 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     /**
      * Return true if a player got kingdom, false if not
@@ -66,6 +85,15 @@ class KingdomPlayer extends Player {
     }
 
     /**
+     * Return if the player is admin
+     *
+     * @return bool
+     */
+    public function isAdmin() {
+        return $this->admin;
+    }
+
+    /**
      * Set player kingdom
      *
      * @param Kingdom|null $kingdom
@@ -90,6 +118,26 @@ class KingdomPlayer extends Player {
      */
     public function setGuild($guild) {
         $this->guild = $guild;
+    }
+
+    /**
+     * Set a player admin
+     *
+     * @param bool $bool
+     */
+    public function setAdmin($bool = true) {
+        $this->admin = $bool;
+    }
+
+    /**
+     * Send a message by key
+     *
+     * @param string $key
+     */
+    public function sendKingdomMessage($key) {
+        $message = LanguageManager::getInstance()->getMessage($key);
+        // ToDo: %coins%, %kingdom%, %guild%
+        $this->sendMessage($message);
     }
 
 }

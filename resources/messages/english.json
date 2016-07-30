@@ -1,1 +1,13 @@
-{}
+{
+  "KINGDOM_COMMAND_USAGE":"{RED}* {YELLOW}If you don't know how to use this command, try using {WHITE}/k help{YELLOW}!",
+  "HELP_PAGE_1":"",
+  "HELP_PAGE_2":"",
+  "HELP_PAGE_3":"",
+  "HELP_PAGE_4":"",
+  "HELP_PAGE_5":"",
+  "KINGDOM_CREATE_USAGE":"{RED}* {YELLOW}Usage: {WHITE}/k create <kingdom> [motto]",
+  "KINGDOM_CREATE_FAILED_BY_CHARS":"{RED}* {YELLOW}Your kingdom name should have max 5 characters!",
+  "KINGDOM_CREATE_FAILED_BY_RANK":"{RED}* {YELLOW}You should be admin to execute this command!",
+  "KINGDOM_CREATE_FAILED_BY_KINGDOM":"{RED}* {YELLOW}This kingdom already exists!",
+  "KINGDOM_CREATE_SUCCESS":"{RED}* {YELLOW}Your kingdom was successfully created!"
+}

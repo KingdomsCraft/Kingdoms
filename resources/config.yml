@@ -2,4 +2,8 @@
 ---
 #
 msgFile: "english.json"
+# Min Kingdom characters
+min-k-chars: 1
+# Max Kingdom characters
+max-k-chars: 6
 ...

@@ -2,22 +2,28 @@
 /**
  * Created by PhpStorm.
  * User: AndrewBit
- * Date: 29/07/2016
- * Time: 20:37
+ * Date: 30/07/2016
+ * Time: 23:30
  */
 
 namespace Kingdoms\command;
 
+use Kingdoms\command\kingdom\CreateCommand;
+use Kingdoms\command\kingdom\HelpCommand;
+use Kingdoms\command\kingdom\KingdomSubCommand;
+use Kingdoms\KingdomPlayer;
 use Kingdoms\Main;
-use pocketmine\command\Command;
 
 class CommandManager {
 
     /** @var Main */
     private $plugin;
 
-    /** @var Command[] */
-    private $commands = [];
+    /** @var KingdomCommand */
+    private $kingdomCommand;
+
+    /** @var KingdomSubCommand[] */
+    private $kingdomCommands = [];
 
     /**
      * CommandManager constructor.
@@ -30,24 +36,50 @@ class CommandManager {
     }
 
     /**
-     * Initializes the plugin
+     * Initialize the class
      */
-    private function init() {
-        $this->commands["kingdom"] = new KingdomCommand($this->plugin);
-        $this->commands["guild"] = new GuildCommand($this->plugin);
-        $commandMap = $this->plugin->getServer()->getCommandMap();
-        foreach($this->commands as $name => $command) {
-            $commandMap->register($name, $command);
-        }
+    public function init() {
+        $this->kingdomCommand = new KingdomCommand($this);
+        $this->kingdomCommands["help"] = new HelpCommand($this);
+        $this->kingdomCommands["create"] = new CreateCommand($this);
+        $this->registerAll();
     }
 
     /**
-     * Return commands
-     *
-     * @return Command[]
+     * Register all commands
      */
-    public function getCommands() {
-        return $this->commands;
+    public function registerAll() {
+        $commandMap = $this->plugin->getServer()->getCommandMap();
+        $commandMap->register("kingdom", $this->kingdomCommand);
+    }
+
+    /**
+     * Execute a Kingdom subcommand
+     *
+     * @param string $command
+     * @param KingdomPlayer $sender
+     * @param array $args
+     */
+    public function kingdom_execute($command, KingdomPlayer $sender, $args) {
+        $this->kingdomCommands[$command]->execute($sender, $args);
+    }
+
+    /**
+     * Return Main instance
+     *
+     * @return Main
+     */
+    public function getPlugin() {
+        return $this->plugin;
+    }
+
+    /**
+     * Return KingdomSubCommand array
+     *
+     * @return KingdomSubCommand[]
+     */
+    public function getKingdomCommands() {
+        return $this->kingdomCommands;
     }
 
 }

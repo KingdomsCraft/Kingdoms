@@ -8,6 +8,7 @@
 
 namespace Kingdoms;
 
+use Kingdoms\command\CommandManager;
 use Kingdoms\database\PluginDatabase;
 use Kingdoms\language\LanguageManager;
 use Kingdoms\models\kingdom\KingdomManager;
@@ -31,6 +32,9 @@ class Main extends PluginBase {
     /** @var KingdomManager */
     private $kingdomManager;
 
+    /** @var CommandManager */
+    private $commandManager;
+
     public function onLoad() {
         if(!self::$object instanceof Main) {
             self::$object = $this;
@@ -42,6 +46,7 @@ class Main extends PluginBase {
         $this->setLanguageManager();
         $this->setKingdomManager();
         $this->setPluginDatabase();
+        $this->setCommandManager();
         $this->setListener();
         $this->getLogger()->info("Kingdoms was enabled.");
     }
@@ -104,6 +109,15 @@ class Main extends PluginBase {
     }
 
     /**
+     * Return CommandManager instance
+     *
+     * @return CommandManager
+     */
+    public function getCommandManager() {
+        return $this->commandManager;
+    }
+
+    /**
      * Register EventListener instance
      */
     public function setListener() {
@@ -129,6 +143,13 @@ class Main extends PluginBase {
      */
     public function setKingdomManager() {
         $this->kingdomManager = new KingdomManager($this);
+    }
+
+    /**
+     * Register CommandManager instance
+     */
+    public function setCommandManager() {
+        $this->commandManager = new CommandManager($this);
     }
 
 }

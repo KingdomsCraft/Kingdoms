@@ -10,6 +10,7 @@ namespace Kingdoms\database\kingdom;
 
 use Kingdoms\database\kingdom\request\InitDatabaseRequest;
 use Kingdoms\database\kingdom\request\InitKingdomsRequest;
+use Kingdoms\database\kingdom\request\RegisterKingdomRequest;
 use Kingdoms\database\kingdom\request\UpdateKingdomRequest;
 use Kingdoms\database\mysql\MySQLDatabase;
 use Kingdoms\models\kingdom\Kingdom;
@@ -45,6 +46,16 @@ class KingdomDatabase extends MySQLDatabase {
      */
     public function updateKingdom(Kingdom $kingdom) {
         $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new UpdateKingdomRequest($this, $kingdom->getData()));
+    }
+
+    /**
+     * Register a kingdom
+     *
+     * @param string $kingdom
+     * @param string $motto
+     */
+    public function registerKingdom($kingdom, $motto) {
+        $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new RegisterKingdomRequest($this, $kingdom, $motto));
     }
 
 }
