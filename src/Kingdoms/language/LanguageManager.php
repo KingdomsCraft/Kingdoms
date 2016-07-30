@@ -8,6 +8,9 @@
 
 namespace Kingdoms\language;
 
+use Kingdoms\Main;
+use Kingdoms\Utils;
+
 class LanguageManager {
 
     /** @var LanguageManager */
