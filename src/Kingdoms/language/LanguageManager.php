@@ -6,7 +6,7 @@
  * Time: 17:12
  */
 
-namespace Kingdoms;
+namespace Kingdoms\language;
 
 class LanguageManager {
 

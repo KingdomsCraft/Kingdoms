@@ -9,6 +9,7 @@
 namespace Kingdoms;
 
 use Kingdoms\database\PluginDatabase;
+use Kingdoms\language\LanguageManager;
 use Kingdoms\models\kingdom\KingdomManager;
 use pocketmine\plugin\PluginBase;
 
