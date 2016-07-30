@@ -8,6 +8,7 @@
 
 namespace Kingdoms\database;
 
+use Kingdoms\database\kingdom\KingdomDatabase;
 use Kingdoms\database\mysql\MySQLCredentials;
 
 class PluginDatabase extends Database {
@@ -15,8 +16,12 @@ class PluginDatabase extends Database {
     /** @var MySQLCredentials */
     private $credentials;
 
+    /** @var KingdomDatabase */
+    private $kingdomDatabase;
+
     public function init() {
         $this->parseDatabaseCredentials();
+        $this->setKingdomDatabase();
     }
 
     /**
@@ -29,12 +34,28 @@ class PluginDatabase extends Database {
     }
 
     /**
+     * Return KingdomDatabase instance
+     *
+     * @return KingdomDatabase
+     */
+    public function getKingdomDatabase() {
+        return $this->kingdomDatabase;
+    }
+
+    /**
      * Set MySQLCredentials instance
      *
      * @param MySQLCredentials $credentials
      */
     public function setCredentials($credentials) {
         $this->credentials = $credentials;
+    }
+
+    /**
+     * Register KingdomDatabase instance
+     */
+    public function setKingdomDatabase() {
+        $this->kingdomDatabase = new KingdomDatabase($this->getPlugin(), $this->getCredentials());
     }
 
     /**
