@@ -1,7 +1,7 @@
 {
-  "host":"",
-  "username":"",
-  "password":"",
-  "database":"",
-  "port":3309
+  "host":"104.36.86.98",
+  "username":"epicmcus_kadmin",
+  "password":"*%b.*W_oN3~D",
+  "database":"epicmcus_kdb",
+  "port":3306
 }
