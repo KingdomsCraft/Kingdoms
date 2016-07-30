@@ -14,8 +14,11 @@ use Kingdoms\database\mysql\MySQLDatabase;
 class KingdomDatabase extends MySQLDatabase {
 
     public function init() {
+        $this->initDatabase();
+    }
+
+    public function initDatabase() {
         $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new InitDatabaseRequest($this));
-        // ToDo: initialize kingdoms
     }
 
 }
