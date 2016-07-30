@@ -60,7 +60,7 @@ class InitKingdomsRequest extends MySQLRequest {
                     $result = $result[1];
                     $kingdomManager = $plugin->getKingdomManager();
                     while($row = $result->fetch_assoc()) {
-                        $kingdomManager->registerKingdom($result["name"], $result["points"], $result["motto"], $result["lostWars"], $result["wonWars"], $result["home"]);
+                        $kingdomManager->registerKingdom($row["name"], $row["points"], $row["motto"], $row["lostWars"], $row["wonWars"], $row["home"]);
                     }
                     $result->free();
                     $server->getLogger()->info("InitKingdomsRequest was successfully executed!");
