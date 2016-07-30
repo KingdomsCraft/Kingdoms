@@ -58,8 +58,12 @@ class InitKingdomsRequest extends MySQLRequest {
                 case self::MYSQL_SUCCESS:
                     /** @var \mysqli_result $result */
                     $result = $result[1];
-                    // ToDo: while($row = $result->fetch_assoc()) {}
+                    $kingdomManager = $plugin->getKingdomManager();
+                    while($row = $result->fetch_assoc()) {
+                        $kingdomManager->registerKingdom($result["name"], $result["points"], $result["motto"], $result["lostWars"], $result["wonWars"], $result["home"]);
+                    }
                     $result->free();
+                    $server->getLogger()->info("InitKingdomsRequest was successfully executed!");
                     break;
                 case self::KINGDOMS_NOT_FOUND:
                     $server->getLogger()->debug("Couldn't execute InitKingdomsRequest due kingdoms not found!");
