@@ -65,7 +65,7 @@ class PluginDatabase extends Database {
         $path = $this->getPlugin()->getDataFolder() . "database.json";
         if(is_file($path)) {
             $array = json_decode(file_get_contents($path), true);
-            $this->setCredentials(new MySQLCredentials($array["host"], $array["username"], $array["password"], $array["database"], $array["port"]));
+            $this->credentials = new MySQLCredentials($array["host"], $array["username"], $array["password"], $array["database"], $array["port"]);
         }
         else {
             $this->getPlugin()->getLogger()->critical("Couldn't parse database credentials due there isn't a database.json file!");

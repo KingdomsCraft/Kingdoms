@@ -52,6 +52,7 @@ class Main extends PluginBase {
     public function initialize() {
         if(!is_dir($this->getDataFolder())) @mkdir($this->getDataFolder());
         if(!is_dir($path = $this->getDataFolder() . "messages")) @mkdir($path);
+        $this->saveDefaultConfig();
         $this->saveResource("messages/english.json");
         $this->saveResource("database.json");
     }

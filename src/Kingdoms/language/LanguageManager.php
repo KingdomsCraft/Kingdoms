@@ -38,7 +38,7 @@ class LanguageManager {
      */
     private function init() {
         $config = $this->plugin->getConfig()->getAll();
-        if(is_file($file = $this->plugin->getDataFolder() . $config["msgFile"])) {
+        if(is_file($file = $this->plugin->getDataFolder() . "messages" . DIRECTORY_SEPARATOR . $config["msgFile"])) {
             $this->messages = json_decode(file_get_contents($file), true);
         }
         else {

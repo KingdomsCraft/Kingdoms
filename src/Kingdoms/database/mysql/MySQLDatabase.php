@@ -23,8 +23,8 @@ abstract class MySQLDatabase extends Database {
      * @param MySQLCredentials $credentials
      */
     public function __construct(Main $plugin, MySQLCredentials $credentials) {
-        parent::__construct($plugin);
         $this->credentials = $credentials;
+        parent::__construct($plugin);
     }
 
     /**
