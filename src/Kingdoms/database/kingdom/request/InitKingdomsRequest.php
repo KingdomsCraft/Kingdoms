@@ -37,7 +37,7 @@ class InitKingdomsRequest extends MySQLRequest {
         else {
             $result = $database->query("\nSELECT * FROM kingdoms");
             if($result instanceof \mysqli_result) {
-                $this->setResult([self::MYSQL_SUCCESS, $result]);
+                $this->setResult([self::MYSQL_SUCCESS]);
             }
             else {
                 $this->setResult([self::KINGDOMS_NOT_FOUND]);
@@ -57,12 +57,14 @@ class InitKingdomsRequest extends MySQLRequest {
                     break;
                 case self::MYSQL_SUCCESS:
                     /** @var \mysqli_result $result */
-                    $result = $result[1];
+                    $database = $this->getDatabase();
+                    $result = $database->query("\nSELECT * FROM kingdoms");
                     $kingdomManager = $plugin->getKingdomManager();
                     while($row = $result->fetch_assoc()) {
                         $kingdomManager->registerKingdom($row["name"], $row["points"], $row["motto"], $row["lostWars"], $row["wonWars"], $row["home"]);
                     }
                     $result->free();
+                    $database->close();
                     $server->getLogger()->info("InitKingdomsRequest was successfully executed!");
                     break;
                 case self::KINGDOMS_NOT_FOUND:

@@ -28,7 +28,7 @@ class KingdomCommand extends Command {
     }
 
     public function execute(CommandSender $sender, $commandLabel, array $args) {
-        // TODO: Implement execute() method.
+        //
     }
 
 }
