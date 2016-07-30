@@ -57,6 +57,22 @@ class Kingdom {
     }
 
     /**
+     * Return Kingdom data
+     *
+     * @return array
+     */
+    public function getData() {
+        return [
+            "name" => $this->name,
+            "points" => $this->points,
+            "motto" => $this->motto,
+            "lostWars" => $this->lostWars,
+            "wonWars" => $this->wonWars,
+            "home" => $this->home
+        ];
+    }
+
+    /**
      * Return kingdom name
      *
      * @return string
