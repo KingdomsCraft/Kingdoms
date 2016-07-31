@@ -43,7 +43,7 @@ class KingdomCommand extends Command {
                         $this->commandManager->kingdom_execute("create", $sender, $args);
                         break;
                     case "top":
-                        $this->commandManager->kingdom_execute("create", $sender, $args);
+                        $this->commandManager->kingdom_execute("top", $sender, $args);
                         break;
                     default:
                         $sender->sendKingdomMessage("KINGDOM_COMMAND_USAGE");

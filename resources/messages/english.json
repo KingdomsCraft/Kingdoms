@@ -1,5 +1,6 @@
 {
   "KINGDOM_COMMAND_USAGE":"{RED}* {YELLOW}If you don't know how to use this command, try using {WHITE}/k help{YELLOW}!",
+  "HELP_HEADER":"{YELLOW}____|--{WHITE}{page}{YELLOW}--|____",
   "HELP_PAGE_1":"",
   "HELP_PAGE_2":"",
   "HELP_PAGE_3":"",

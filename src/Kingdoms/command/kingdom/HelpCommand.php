@@ -10,6 +10,7 @@ namespace Kingdoms\command\kingdom;
 
 use Kingdoms\command\SubCommand;
 use Kingdoms\KingdomsPlayer;
+use Kingdoms\language\LanguageManager;
 
 class HelpCommand extends SubCommand implements KingdomSubCommand {
 
@@ -29,6 +30,7 @@ class HelpCommand extends SubCommand implements KingdomSubCommand {
         else {
             $page = 1;
         }
+        $sender->sendMessage(str_replace("{page}", $page, LanguageManager::getInstance()->getMessage("HELP_HEADER")));
         $sender->sendKingdomMessage("HELP_PAGE_{$page}");
     }
 
