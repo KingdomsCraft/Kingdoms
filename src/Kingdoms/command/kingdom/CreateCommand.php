@@ -10,7 +10,6 @@ namespace Kingdoms\command\kingdom;
 
 use Kingdoms\command\SubCommand;
 use Kingdoms\KingdomsPlayer;
-use Kingdoms\models\kingdom\Kingdom;
 
 class CreateCommand extends SubCommand implements KingdomSubCommand {
 
@@ -24,8 +23,7 @@ class CreateCommand extends SubCommand implements KingdomSubCommand {
         if($sender->isAdmin() or $sender->isOp()) {
             if(isset($args[0])) {
                 $name = strtoupper($args[0]);
-                $kingdom = $this->getPlugin()->getKingdomManager()->getKingdom($name);
-                if($kingdom instanceof Kingdom) {
+                if($this->getPlugin()->getKingdomManager()->isKingdom($name)) {
                     $sender->sendKingdomMessage("KINGDOM_CREATE_FAILED_BY_KINGDOM");
                 }
                 else {

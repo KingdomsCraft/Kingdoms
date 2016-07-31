@@ -37,14 +37,24 @@ class KingdomManager {
     }
 
     /**
+     * Return if a Kingdom exists
+     *
+     * @param string $name
+     * @return bool
+     */
+    public function isKingdom($name) {
+        return isset($this->kingdoms[strtoupper($name)]);
+    }
+
+    /**
      * Return kingdom
      *
      * @param string $name
      * @return Kingdom|null
      */
     public function getKingdom($name) {
-        if(isset($this->kingdoms[$name])) {
-            return $this->kingdoms[$name];
+        if(isset($this->kingdoms[strtoupper($name)])) {
+            return $this->kingdoms[strtoupper($name)];
         }
         else {
             $this->plugin->getLogger()->critical("Couldn't get kingdom {$name} due it's not registered on KingdomManager!");
