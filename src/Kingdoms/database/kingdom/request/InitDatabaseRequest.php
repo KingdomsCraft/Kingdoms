@@ -38,10 +38,10 @@ class InitDatabaseRequest extends MySQLRequest {
             $database->query("\nCREATE TABLE IF NOT EXISTS kingdoms (
             name VARCHAR(32) PRIMARY KEY,
             motto VARCHAR(128),
-            points INT,
-            wonWars INT,
-            lostWars INT,
-            home VARCHAR(128))");
+            points INT DEFAULT 0,
+            wonWars INT DEFAULT 0,
+            lostWars INT DEFAULT 0,
+            home VARCHAR(128) DEFAULT '')");
             if(isset($database->error) and $database->error) {
                 $this->setResult([self::MYSQL_ERROR, $database->error]);
             }
@@ -61,15 +61,15 @@ class InitDatabaseRequest extends MySQLRequest {
             $result = $this->getResult();
             switch($result[0]) {
                 case self::MYSQL_CONNECTION_ERROR:
-                    $server->getLogger()->debug("Couldn't execute InitDatabaseRequest due MySQL connection error");
+                    $server->getLogger()->info("Couldn't execute InitDatabaseRequest due MySQL connection error");
                     throw new \RuntimeException($result[1]);
                     break;
                 case self::MYSQL_ERROR:
-                    $server->getLogger()->debug("Couldn't execute InitDatabaseRequest due database error");
+                    $server->getLogger()->info("Couldn't execute InitDatabaseRequest due database error");
                     throw new \RuntimeException($result[1]);
                     break;
                 case self::MYSQL_SUCCESS:
-                    $server->getLogger()->debug("InitKingdomsRequest successfully done");
+                    $server->getLogger()->info("InitKingdomsRequest successfully done");
                     break;
             }
         }
