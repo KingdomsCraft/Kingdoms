@@ -61,11 +61,11 @@ class InitKingdomRequest extends MySQLRequest {
             $result = $this->getResult();
             switch($result[0]) {
                 case self::MYSQL_CONNECTION_ERROR:
-                    $server->getLogger()->debug("Couldn't execute InitKingdomRequest due MySQL connection error");
+                    $server->getLogger()->info("Couldn't execute InitKingdomRequest due MySQL connection error");
                     throw new \RuntimeException($result[1]);
                     break;
                 case self::KINGDOM_NO_REGISTERED:
-                    $server->getLogger()->debug("Couldn't execute InitKingdomRequest due kingdom {$this->name} is not registered!");
+                    $server->getLogger()->info("Couldn't execute InitKingdomRequest due kingdom {$this->name} is not registered!");
                     break;
                 case self::MYSQL_SUCCESS:
                     $kingdom = $plugin->getKingdomManager()->getKingdom($this->name);
@@ -76,7 +76,7 @@ class InitKingdomRequest extends MySQLRequest {
                     $kingdom->setLostWars($row["lostWars"]);
                     $kingdom->setWonWars($row["wonWars"]);
                     $kingdom->setHome($row["home"]);
-                    $server->getLogger()->debug("Kingdom {$this->name} was successfully initialized");
+                    $server->getLogger()->info("Kingdom {$this->name} was successfully initialized");
                     break;
             }
         }

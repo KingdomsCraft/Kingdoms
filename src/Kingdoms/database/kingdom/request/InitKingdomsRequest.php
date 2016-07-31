@@ -52,7 +52,7 @@ class InitKingdomsRequest extends MySQLRequest {
             $result = $this->getResult();
             switch($result[0]) {
                 case self::MYSQL_CONNECTION_ERROR:
-                    $server->getLogger()->debug("Couldn't execute InitKingdomsRequest due connection error!");
+                    $server->getLogger()->info("Couldn't execute InitKingdomsRequest due connection error!");
                     throw new \RuntimeException($result[1]);
                     break;
                 case self::MYSQL_SUCCESS:
@@ -67,7 +67,7 @@ class InitKingdomsRequest extends MySQLRequest {
                     $server->getLogger()->info("InitKingdomsRequest was successfully executed!");
                     break;
                 case self::KINGDOMS_NOT_FOUND:
-                    $server->getLogger()->debug("Couldn't execute InitKingdomsRequest due kingdoms not found!");
+                    $server->getLogger()->info("Couldn't execute InitKingdomsRequest due kingdoms not found!");
                     break;
             }
         }

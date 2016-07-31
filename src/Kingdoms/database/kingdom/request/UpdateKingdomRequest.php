@@ -77,14 +77,14 @@ class UpdateKingdomRequest extends MySQLRequest {
             $result = $this->getResult();
             switch($result[0]) {
                 case self::MYSQL_CONNECTION_ERROR:
-                    $server->getLogger()->debug("Couldn't execute UpdateKingdomRequest due connection error!");
+                    $server->getLogger()->info("Couldn't execute UpdateKingdomRequest due connection error!");
                     throw new \RuntimeException($result[1]);
                     break;
                 case self::MYSQL_ERROR:
-                    $server->getLogger()->debug("Couldn't execute UpdateKingdomRequest due unknown error!");
+                    $server->getLogger()->info("Couldn't execute UpdateKingdomRequest due unknown error!");
                     break;
                 case self::MYSQL_SUCCESS:
-                    $server->getLogger()->debug("Kingdom {$this->name} was successfully updated!");
+                    $server->getLogger()->info("Kingdom {$this->name} was successfully updated!");
                     break;
             }
         }

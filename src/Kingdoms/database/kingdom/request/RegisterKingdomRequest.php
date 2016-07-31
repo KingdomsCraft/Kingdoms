@@ -65,15 +65,18 @@ class RegisterKingdomRequest extends MySQLRequest {
             $result = $this->getResult();
             switch($result[0]) {
                 case self::MYSQL_CONNECTION_ERROR:
-                    $server->getLogger()->debug("Couldn't execute RegisterKingdomRequest due connection error!");
+                    $server->getLogger()->info("Couldn't execute RegisterKingdomRequest due connection error!");
                     throw new \RuntimeException($result[1]);
                     break;
                 case self::MYSQL_ERROR:
-                    $server->getLogger()->debug("Couldn't execute RegisterKingdomRequest due unknown error!");
+                    $server->getLogger()->info("Couldn't execute RegisterKingdomRequest due unknown error!");
                     break;
                 case self::MYSQL_SUCCESS:
-                    $server->getLogger()->debug("RegisterKingdomRequest was successfully done with {$this->name}");
+                    $server->getLogger()->info("RegisterKingdomRequest was successfully created with {$this->name}");
                     $plugin->getKingdomManager()->registerKingdom($this->name, 0, $this->motto, 0, 0, '');
+                    break;
+                default:
+                    $server->getLogger()->info("Couldn't execute RegisterKingdomRequest due unknown error");
                     break;
             }
         }

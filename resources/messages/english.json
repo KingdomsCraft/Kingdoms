@@ -1,7 +1,7 @@
 {
   "KINGDOM_COMMAND_USAGE":"{RED}* {YELLOW}If you don't know how to use this command, try using {WHITE}/k help{YELLOW}!",
-  "HELP_HEADER":"{YELLOW}____|--{WHITE}{page}{YELLOW}--|____",
-  "HELP_PAGE_1":"",
+  "HELP_HEADER":"{YELLOW}____|--{WHITE}{page} of 5{YELLOW}--|____",
+  "HELP_PAGE_1":"{WHITE}/k create <kingdom> [motto]\n{WHITE}/k top",
   "HELP_PAGE_2":"",
   "HELP_PAGE_3":"",
   "HELP_PAGE_4":"",

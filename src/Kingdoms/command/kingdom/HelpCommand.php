@@ -23,8 +23,11 @@ class HelpCommand extends SubCommand implements KingdomSubCommand {
     public function execute(KingdomsPlayer $sender, $args) {
         if(isset($args[0])) {
             $page = (int) $args[0];
-            if(!$page > 0 and $page < 5) {
+            if($page <= 0) {
                 $page = 1;
+            }
+            elseif($page > 5) {
+                $page = 5;
             }
         }
         else {
