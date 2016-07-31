@@ -37,14 +37,13 @@ class KingdomCommand extends Command {
             if(isset($args[0])) {
                 switch(strtolower($args[0])) {
                     case "help":
-                        $arguments = $args;
-                        unset($args[0]);
-                        $this->commandManager->kingdom_execute("help", $sender, $arguments);
+                        $this->commandManager->kingdom_execute("help", $sender, $args);
                         break;
                     case "create":
-                        $arguments = $args;
-                        unset($args[0]);
-                        $this->commandManager->kingdom_execute("create", $sender, $arguments);
+                        $this->commandManager->kingdom_execute("create", $sender, $args);
+                        break;
+                    case "top":
+                        $this->commandManager->kingdom_execute("create", $sender, $args);
                         break;
                     default:
                         $sender->sendKingdomMessage("KINGDOM_COMMAND_USAGE");

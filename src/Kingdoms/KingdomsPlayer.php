@@ -140,4 +140,32 @@ class KingdomPlayer extends Player {
         $this->sendMessage($message);
     }
 
+    /**
+     * Send a message with a kingdom position in the leaderboard
+     *
+     * @param $rank
+     * @param string $kingdom
+     * @param $points
+     */
+    public function sendRankedKingdom($rank, $kingdom, $points) {
+        $message = LanguageManager::getInstance()->getMessage("KINGDOM_RANK");
+        $message = str_replace("{rank}", $rank, $message);
+        $message = str_replace("{name}", $kingdom, $message);
+        $message = str_replace("{points}", $points, $message);
+        $this->sendMessage($message);
+    }
+
+    /**
+     * Send message with amount of pages
+     *
+     * @param $page
+     * @param $maxPages
+     */
+    public function sendPageAmount($page, $maxPages) {
+        $message = LanguageManager::getInstance()->getMessage("KINGDOM_TOP_PAGES");
+        $message = str_replace("{page}", $page, $message);
+        $message = str_replace("{maxPages}", $maxPages, $message);
+        $this->sendMessage($message);
+    }
+
 }

@@ -11,6 +11,7 @@ namespace Kingdoms\command;
 use Kingdoms\command\kingdom\CreateCommand;
 use Kingdoms\command\kingdom\HelpCommand;
 use Kingdoms\command\kingdom\KingdomSubCommand;
+use Kingdoms\command\kingdom\TopCommand;
 use Kingdoms\KingdomPlayer;
 use Kingdoms\Main;
 
@@ -42,6 +43,7 @@ class CommandManager {
         $this->kingdomCommand = new KingdomCommand($this);
         $this->kingdomCommands["help"] = new HelpCommand($this);
         $this->kingdomCommands["create"] = new CreateCommand($this);
+        $this->kingdomCommands["top"] = new TopCommand($this);
         $this->registerAll();
     }
 
@@ -61,6 +63,9 @@ class CommandManager {
      * @param array $args
      */
     public function kingdom_execute($command, KingdomPlayer $sender, $args) {
+        unset($args[0]);
+        $args = implode(" ", $args);
+        $args = explode(" ", $args);
         $this->kingdomCommands[$command]->execute($sender, $args);
     }
 
