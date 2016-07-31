@@ -9,7 +9,7 @@
 namespace Kingdoms\command\kingdom;
 
 use Kingdoms\command\SubCommand;
-use Kingdoms\KingdomPlayer;
+use Kingdoms\KingdomsPlayer;
 use Kingdoms\models\kingdom\Kingdom;
 
 class CreateCommand extends SubCommand implements KingdomSubCommand {
@@ -17,10 +17,10 @@ class CreateCommand extends SubCommand implements KingdomSubCommand {
     /**
      * Execute create command
      *
-     * @param KingdomPlayer $sender
+     * @param KingdomsPlayer $sender
      * @param array $args
      */
-    public function execute(KingdomPlayer $sender, $args) {
+    public function execute(KingdomsPlayer $sender, $args) {
         if($sender->isAdmin() or $sender->isOp()) {
             if(isset($args[0])) {
                 $name = strtoupper($args[0]);

@@ -9,17 +9,17 @@
 namespace Kingdoms\command\kingdom;
 
 use Kingdoms\command\SubCommand;
-use Kingdoms\KingdomPlayer;
+use Kingdoms\KingdomsPlayer;
 
 class TopCommand extends SubCommand implements KingdomSubCommand {
 
     /**
      * Execute top command
      *
-     * @param KingdomPlayer $sender
+     * @param KingdomsPlayer $sender
      * @param array $args
      */
-    public function execute(KingdomPlayer $sender, $args) {
+    public function execute(KingdomsPlayer $sender, $args) {
         if(isset($args[0])) {
             $page = (int)$args[0];
             if(!$page > 0) {

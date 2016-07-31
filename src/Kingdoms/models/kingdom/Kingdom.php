@@ -8,7 +8,7 @@
 
 namespace Kingdoms\models\kingdom;
 
-use Kingdoms\KingdomPlayer;
+use Kingdoms\KingdomsPlayer;
 use Kingdoms\Main;
 use pocketmine\level\Level;
 use pocketmine\level\Position;
@@ -155,7 +155,7 @@ class Kingdom {
      */
     public function getPlayersByKingdom() {
         $players = [];
-        /** @var KingdomPlayer $player */
+        /** @var KingdomsPlayer $player */
         foreach($this->plugin->getServer()->getOnlinePlayers() as $player) {
             if($player->getKingdom() == $this) {
                 $players[] = $player;

@@ -13,7 +13,7 @@ use Kingdoms\models\guild\Guild;
 use Kingdoms\models\kingdom\Kingdom;
 use pocketmine\Player;
 
-class KingdomPlayer extends Player {
+class KingdomsPlayer extends Player {
 
     /** @var Kingdom|null */
     private $kingdom = null;

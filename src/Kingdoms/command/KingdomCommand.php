@@ -8,7 +8,7 @@
 
 namespace Kingdoms\command;
 
-use Kingdoms\KingdomPlayer;
+use Kingdoms\KingdomsPlayer;
 use Kingdoms\Main;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -33,7 +33,7 @@ class KingdomCommand extends Command {
     }
 
     public function execute(CommandSender $sender, $commandLabel, array $args) {
-        if($sender instanceof KingdomPlayer) {
+        if($sender instanceof KingdomsPlayer) {
             if(isset($args[0])) {
                 switch(strtolower($args[0])) {
                     case "help":

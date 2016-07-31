@@ -10,7 +10,7 @@ namespace Kingdoms\database\kingdom\request;
 
 use Kingdoms\database\kingdom\KingdomDatabase;
 use Kingdoms\database\mysql\MySQLRequest;
-use Kingdoms\KingdomPlayer;
+use Kingdoms\KingdomsPlayer;
 use Kingdoms\Main;
 use pocketmine\Server;
 
@@ -72,7 +72,7 @@ class ListKingdomsRequest extends MySQLRequest {
                     break;
                 case self::MYSQL_SUCCESS:
                     $player = $plugin->getServer()->getPlayerExact($this->name);
-                    if($player instanceof KingdomPlayer) {
+                    if($player instanceof KingdomsPlayer) {
                         $database = $this->getDatabase();
                         $result = $database->query("\nSELECT * FROM kingdoms");
                         $i = 0;

@@ -12,7 +12,7 @@ use Kingdoms\command\kingdom\CreateCommand;
 use Kingdoms\command\kingdom\HelpCommand;
 use Kingdoms\command\kingdom\KingdomSubCommand;
 use Kingdoms\command\kingdom\TopCommand;
-use Kingdoms\KingdomPlayer;
+use Kingdoms\KingdomsPlayer;
 use Kingdoms\Main;
 
 class CommandManager {
@@ -59,10 +59,10 @@ class CommandManager {
      * Execute a Kingdom subcommand
      *
      * @param string $command
-     * @param KingdomPlayer $sender
+     * @param KingdomsPlayer $sender
      * @param array $args
      */
-    public function kingdom_execute($command, KingdomPlayer $sender, $args) {
+    public function kingdom_execute($command, KingdomsPlayer $sender, $args) {
         unset($args[0]);
         $args = implode(" ", $args);
         $args = explode(" ", $args);

@@ -32,7 +32,7 @@ class EventListener implements Listener {
      * @param PlayerCreationEvent $event
      */
     public function onCreation(PlayerCreationEvent $event) {
-        $event->setPlayerClass(KingdomPlayer::class);
+        $event->setPlayerClass(KingdomsPlayer::class);
     }
 
 }

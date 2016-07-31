@@ -8,15 +8,14 @@
 
 namespace Kingdoms\command\kingdom;
 
-use Kingdoms\KingdomPlayer;
-use Kingdoms\Main;
+use Kingdoms\KingdomsPlayer;
 
 interface KingdomSubCommand {
 
     /**
-     * @param KingdomPlayer $sender
+     * @param KingdomsPlayer $sender
      * @param array $args
      */
-    public function execute(KingdomPlayer $sender, $args);
+    public function execute(KingdomsPlayer $sender, $args);
 
 }
