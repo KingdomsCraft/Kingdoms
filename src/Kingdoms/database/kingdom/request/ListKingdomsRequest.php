@@ -32,12 +32,12 @@ class ListKingdomsRequest extends MySQLRequest {
      *
      * @param KingdomDatabase $database
      * @param string $name
-     * @param int $page
+     * @param $page
      */
     public function __construct(KingdomDatabase $database, $name, $page) {
         parent::__construct($database->getCredentials());
         $this->name = $name;
-        $this->page = $page;
+        $this->page = (int) $page;
     }
 
     public function onRun() {
@@ -46,7 +46,7 @@ class ListKingdomsRequest extends MySQLRequest {
             $this->setResult([self::MYSQL_CONNECTION_ERROR, $database->connect_error]);
         }
         else {
-            $result = $database->query("\n SELECT * FROM kingdoms");
+            $result = $database->query("\nSELECT * FROM kingdoms");
             if($result instanceof \mysqli_result) {
                 $result->free();
                 $this->setResult([self::MYSQL_SUCCESS]);

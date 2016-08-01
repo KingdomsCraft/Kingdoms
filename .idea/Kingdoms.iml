@@ -8,9 +8,11 @@
       <library name="PHARS">
         <CLASSES>
           <root url="phar://$MODULE_DIR$/../../Path/PocketMine-MP.phar/" />
+          <root url="phar://$MODULE_DIR$/FactionsPro_v1.7.9.phar/" />
         </CLASSES>
         <SOURCES>
           <root url="phar://$MODULE_DIR$/../../Path/PocketMine-MP.phar/" />
+          <root url="phar://$MODULE_DIR$/FactionsPro_v1.7.9.phar/" />
         </SOURCES>
       </library>
     </orderEntry>
