@@ -11,8 +11,7 @@
   "KINGDOM_CREATE_FAILED_BY_RANK":"{RED}* {YELLOW}You should be admin to execute this command!",
   "KINGDOM_CREATE_FAILED_BY_KINGDOM":"{RED}* {YELLOW}This kingdom already exists!",
   "KINGDOM_CREATE_SUCCESS":"{RED}* {YELLOW}Your kingdom was successfully created!",
-  "AMOUNT_OF_PAGES":"{WHITE}Page {RED}{page} {WHITE}from {maxPages}",
   "KINGDOM_RANK":"{WHITE}{rank}. {name} {RED}- {WHITE}{points}",
-  "KINGDOM_TOP_PAGES":"{WHITE}Page {page} of {maxPages}",
+  "KINGDOM_TOP_PAGES":"{RED}* {GREEN}Page {page} of {maxPages}",
   "KINGDOM_TOP_FAILED_REASON_PAGE":"{RED}* {YELLOW}This page doesn't exists!"
 }

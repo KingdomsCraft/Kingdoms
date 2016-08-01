@@ -81,7 +81,7 @@ class ListKingdomsRequest extends MySQLRequest {
                         }
                         $maxPages = floor($i / 5);
                         $result->free();
-                        if($this->page < $maxPages) {
+                        if($this->page > $maxPages) {
                             $player->sendKingdomMessage("KINGDOM_TOP_FAILED_REASON_PAGE");
                         }
                         else {
