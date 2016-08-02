@@ -5,22 +5,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/database.json" afterPath="$PROJECT_DIR$/resources/database.json" />
     </list>
     <list default="true" id="01c3eb1b-4fac-4cb1-a55c-3a77820929c4" name="Rejected commit: Default" comment="Bump version to 0.0.1-dev#31">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Kingdoms/database/guild/request/UpdateGuildRequest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Kingdoms/database/mysql/MySQLUpdate.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugin.yml" afterPath="$PROJECT_DIR$/plugin.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Kingdoms/EventListener.php" afterPath="$PROJECT_DIR$/src/Kingdoms/EventListener.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Kingdoms/KingdomsPlayer.php" afterPath="$PROJECT_DIR$/src/Kingdoms/KingdomsPlayer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Kingdoms/database/guild/GuildDatabase.php" afterPath="$PROJECT_DIR$/src/Kingdoms/database/guild/GuildDatabase.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Kingdoms/database/guild/request/InitDatabaseRequest.php" afterPath="$PROJECT_DIR$/src/Kingdoms/database/guild/request/InitDatabaseRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Kingdoms/database/guild/request/InitGuildRequest.php" afterPath="$PROJECT_DIR$/src/Kingdoms/database/guild/request/InitGuildRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Kingdoms/database/player/PlayerDatabase.php" afterPath="$PROJECT_DIR$/src/Kingdoms/database/player/PlayerDatabase.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Kingdoms/database/player/request/InitDatabaseRequest.php" afterPath="$PROJECT_DIR$/src/Kingdoms/database/player/request/InitDatabaseRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Kingdoms/database/player/request/LoginPlayerRequest.php" afterPath="$PROJECT_DIR$/src/Kingdoms/database/player/request/LoginPlayerRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Kingdoms/database/player/request/UpdatePlayerRequest.php" afterPath="$PROJECT_DIR$/src/Kingdoms/database/player/request/UpdatePlayerRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Kingdoms/models/guild/Guild.php" afterPath="$PROJECT_DIR$/src/Kingdoms/models/guild/Guild.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Kingdoms/models/guild/GuildManager.php" afterPath="$PROJECT_DIR$/src/Kingdoms/models/guild/GuildManager.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Kingdoms/models/kingdom/Kingdom.php" afterPath="$PROJECT_DIR$/src/Kingdoms/models/kingdom/Kingdom.php" />
     </list>
     <ignored path="Kingdoms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,8 +66,8 @@
       <file leaf-file-name="plugin.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/plugin.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.11221122">
-              <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.05610561">
+              <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -398,7 +384,13 @@
       <option name="project" value="LOCAL" />
       <updated>1470130965412</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add UpdateGuildRequest &amp; MySQLUpdate. Improve all code.">
+      <created>1470149517737</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1470149517737</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -449,7 +441,8 @@
     <MESSAGE value="Add defaults to kingdoms table" />
     <MESSAGE value="Add new messages, new commands, new queries, PlayerDatabase &amp; GuildDatabase... etc..." />
     <MESSAGE value="Bump version to 0.0.1-dev#31" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 0.0.1-dev#31" />
+    <MESSAGE value="Add UpdateGuildRequest &amp; MySQLUpdate. Improve all code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add UpdateGuildRequest &amp; MySQLUpdate. Improve all code." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -879,8 +872,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/plugin.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11221122">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.05610561">
+          <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
           <folding />
         </state>
       </provider>
