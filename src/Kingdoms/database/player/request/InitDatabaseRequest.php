@@ -40,7 +40,7 @@ class InitDatabaseRequest extends MySQLRequest {
             kingdom VARCHAR(32) DEFAULT '',
             kingdomRank TINYINT DEFAULT 0,
             guild VARCHAR(32) DEFAULT '',
-            admin BYTE DEFAULT 0)");
+            admin INT DEFAULT 0)");
             if(isset($database->error) and $database->error) {
                 $this->setResult([self::MYSQL_ERROR, $database->error]);
             }
