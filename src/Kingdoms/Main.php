@@ -11,6 +11,7 @@ namespace Kingdoms;
 use Kingdoms\command\CommandManager;
 use Kingdoms\database\PluginDatabase;
 use Kingdoms\language\LanguageManager;
+use Kingdoms\models\guild\GuildManager;
 use Kingdoms\models\kingdom\KingdomManager;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
@@ -32,6 +33,9 @@ class Main extends PluginBase {
     /** @var KingdomManager */
     private $kingdomManager;
 
+    /** @var GuildManager */
+    private $guildManager;
+
     /** @var CommandManager */
     private $commandManager;
 
@@ -45,6 +49,7 @@ class Main extends PluginBase {
         $this->initialize();
         $this->setLanguageManager();
         $this->setKingdomManager();
+        $this->setGuildManager();
         $this->setPluginDatabase();
         $this->setCommandManager();
         $this->setListener();
@@ -109,6 +114,15 @@ class Main extends PluginBase {
     }
 
     /**
+     * Return GuildManager instance
+     *
+     * @return GuildManager
+     */
+    public function getGuildManager() {
+        return $this->guildManager;
+    }
+
+    /**
      * Return CommandManager instance
      *
      * @return CommandManager
@@ -143,6 +157,13 @@ class Main extends PluginBase {
      */
     public function setKingdomManager() {
         $this->kingdomManager = new KingdomManager($this);
+    }
+
+    /**
+     * Register GuildManager instance
+     */
+    public function setGuildManager() {
+        $this->guildManager = new GuildManager($this);
     }
 
     /**

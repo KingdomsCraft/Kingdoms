@@ -1,7 +1,7 @@
 {
   "KINGDOM_COMMAND_USAGE":"{RED}* {YELLOW}If you don't know how to use this command, try using {WHITE}/k help{YELLOW}!",
   "HELP_HEADER":"{YELLOW}____|--{WHITE}{page} of 5{YELLOW}--|____",
-  "HELP_PAGE_1":"{WHITE}/k create <kingdom> [motto]\n{WHITE}/k top",
+  "HELP_PAGE_1":"{WHITE}/k create <kingdom> [motto]: Create a kingdom\n{WHITE}/k top: Show top kingdoms\n{WHITE/k info [kingdom=your]: Show kingdom info}\n/k home: Teleport to your kingdom home",
   "HELP_PAGE_2":"",
   "HELP_PAGE_3":"",
   "HELP_PAGE_4":"",
@@ -13,5 +13,19 @@
   "KINGDOM_CREATE_SUCCESS":"{RED}* {YELLOW}Your kingdom was successfully created!",
   "KINGDOM_RANK":"{WHITE}{rank}. {name} {RED}- {WHITE}{points}",
   "KINGDOM_TOP_PAGES":"{RED}* {GREEN}Page {page} of {maxPages}",
-  "KINGDOM_TOP_FAILED_REASON_PAGE":"{RED}* {YELLOW}This page doesn't exists!"
+  "KINGDOM_TOP_FAILED_REASON_PAGE":"{RED}* {YELLOW}This page doesn't exists!",
+  "KINGDOM_INFO_FAILED_BY_KINGDOM":"{RED}* {YELLOW}Couldn't show this kingdom info because it doesn't exists!",
+  "KINGDOM_INFO_HEADER":"{YELLOW}_____|{RED}{name} {WHITE}info{YELLOW}|_____",
+  "KINGDOM_INFO":"{WHITE}Name: {name}\n{WHITE}Motto: {motto}\n{WHITE}Points: {points}\n{WHITE}Leader: {leader}\n{WHITE}Wars won: {RED}{warsWon}",
+  "KINGDOM_INFO_FAILED_ESCAPE":"{RED}* {YELLOW}You should use this as {WHITE}/k info <kingdom> {YELLOW}if you aren't in one!",
+  "KINGDOM_HOME_FAILED_BY_KINGDOM":"{RED}* {YELLOW}You should be in a kingdom to use this command!",
+  "KINGDOM_HOME_FAILED_BY_HOME":"{RED}* {YELLOW}Your kingdom hasn't a home!",
+  "KINGDOM_HOME_SUCCESS":"{GREEN}* {YELLOW}You were teleported to your kingdom home!",
+  "KINGDOM_SETHOME_FAILED_BY_PERM":"{RED}* {YELLOW}You should be an admin to use this command!",
+  "KINGDOM_SETHOME_FAILED_BY_KINGDOM":"{RED}* {YELLOW}You should be in a kingdom to execute this command!",
+  "KINGDOM_SET_SUCCESS":"{GREEN}* {WHITE}Your home was successfully set!",
+  "KINGDOM_JOIN_FAILED_BY_KINGDOM":"{RED}* {YELLOW}You cannot join a kingdom if you already got one!",
+  "KINGDOM_JOIN_USAGE":"{RED}* {YELLOW}Please, set a kingdom! Usage: {WHITE}/k join <kingdom>",
+  "KINGDOM_JOIN_FAILED_BY_KINGDOM_EXISTS":"{RED}* {YELLOW}You cannot join this kingdom because it doesn't exists!",
+  "KINGDOM_JOIN_SUCCESS":"{GREEN}* {WHITE}You joined {AQUA}%kingdom% {WHITE}success!"
 }

@@ -8,8 +8,10 @@
 
 namespace Kingdoms\database;
 
+use Kingdoms\database\guild\GuildDatabase;
 use Kingdoms\database\kingdom\KingdomDatabase;
 use Kingdoms\database\mysql\MySQLCredentials;
+use Kingdoms\database\player\PlayerDatabase;
 
 class PluginDatabase extends Database {
 
@@ -19,9 +21,17 @@ class PluginDatabase extends Database {
     /** @var KingdomDatabase */
     private $kingdomDatabase;
 
+    /** @var GuildDatabase */
+    private $guildDatabase;
+
+    /** @var PlayerDatabase */
+    private $playerDatabase;
+
     public function init() {
         $this->parseDatabaseCredentials();
         $this->setKingdomDatabase();
+        $this->setGuildDatabase();
+        $this->setPlayerDatabase();
     }
 
     /**
@@ -43,6 +53,24 @@ class PluginDatabase extends Database {
     }
 
     /**
+     * Return GuildDatabase instance
+     *
+     * @return GuildDatabase
+     */
+    public function getGuildDatabase() {
+        return $this->guildDatabase;
+    }
+
+    /**
+     * Return PlayerDatabase instance
+     *
+     * @return PlayerDatabase
+     */
+    public function getPlayerDatabase() {
+        return $this->playerDatabase;
+    }
+
+    /**
      * Set MySQLCredentials instance
      *
      * @param MySQLCredentials $credentials
@@ -56,6 +84,20 @@ class PluginDatabase extends Database {
      */
     public function setKingdomDatabase() {
         $this->kingdomDatabase = new KingdomDatabase($this->getPlugin(), $this->getCredentials());
+    }
+
+    /**
+     * Register GuildDatabase instance
+     */
+    public function setGuildDatabase() {
+        $this->guildDatabase = new GuildDatabase($this->getPlugin(), $this->getCredentials());
+    }
+
+    /**
+     * Register PlayerDatabase instance
+     */
+    public function setPlayerDatabase() {
+        $this->playerDatabase = new PlayerDatabase($this->getPlugin(), $this->getCredentials());
     }
 
     /**

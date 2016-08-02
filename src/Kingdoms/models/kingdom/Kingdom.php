@@ -36,6 +36,9 @@ class Kingdom {
     /** @var string */
     private $home;
 
+    /** @var string|null */
+    private $leader;
+
     /**
      * Kingdom constructor.
      * @param Main $plugin
@@ -45,8 +48,9 @@ class Kingdom {
      * @param $lostWars
      * @param $wonWars
      * @param string $home
+     * @param string|null $leader
      */
-    public function __construct(Main $plugin, $name, $points, $motto, $lostWars, $wonWars, $home) {
+    public function __construct(Main $plugin, $name, $points, $motto, $lostWars, $wonWars, $home, $leader) {
         $this->plugin = $plugin;
         $this->name = $name;
         $this->points = (int) $points;
@@ -54,6 +58,7 @@ class Kingdom {
         $this->lostWars = (int) $lostWars;
         $this->wonWars = (int) $wonWars;
         $this->home = $home;
+        $this->leader = $leader;
     }
 
     /**
@@ -68,7 +73,8 @@ class Kingdom {
             "motto" => $this->motto,
             "lostWars" => $this->lostWars,
             "wonWars" => $this->wonWars,
-            "home" => $this->home
+            "home" => $this->home,
+            "leader" => $this->leader
         ];
     }
 
@@ -165,6 +171,15 @@ class Kingdom {
     }
 
     /**
+     * Return kingdom leader
+     *
+     * @return string
+     */
+    public function getLeader() {
+        return $this->leader;
+    }
+
+    /**
      * Set kingdom name
      *
      * @param string $name
@@ -225,6 +240,15 @@ class Kingdom {
      */
     public function setHomePosition(Position $position) {
         $this->home = "{$position->getX()},{$position->getY()},{$position->getZ()},{$position->getLevel()->getName()}";
+    }
+
+    /**
+     * Set kingdom leader
+     *
+     * @param null|string $name
+     */
+    public function setLeader($name) {
+        $this->leader = $name;
     }
 
 }

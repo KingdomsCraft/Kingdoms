@@ -2,34 +2,35 @@
 /**
  * Created by PhpStorm.
  * User: AndrewBit
- * Date: 30/07/2016
- * Time: 21:19
+ * Date: 02/08/2016
+ * Time: 9:13
  */
 
-namespace Kingdoms\database\kingdom\request;
+namespace Kingdoms\database\guild\request;
 
-use Kingdoms\database\kingdom\KingdomDatabase;
+use Kingdoms\database\guild\GuildDatabase;
 use Kingdoms\database\mysql\MySQLRequest;
 use Kingdoms\Main;
 use pocketmine\Server;
 
-class InitKingdomRequest extends MySQLRequest {
+class InitGuildRequest extends MySQLRequest {
 
     // Statuses
     const MYSQL_CONNECTION_ERROR = 0;
-    const KINGDOM_NO_REGISTERED = 1;
-    const MYSQL_SUCCESS = 2;
+    const MYSQL_ERROR = 1;
+    const MYSQL_FAILURE = 2;
+    const MYSQL_SUCCESS = 3;
 
     /** @var string */
     private $name;
 
     /**
-     * InitKingdomRequest constructor.
+     * InitGuildRequest constructor.
      *
-     * @param KingdomDatabase $database
+     * @param GuildDatabase $database
      * @param string $name
      */
-    public function __construct(KingdomDatabase $database, $name) {
+    public function __construct(GuildDatabase $database, $name) {
         parent::__construct($database->getCredentials());
         $this->name = strtoupper($name);
     }
@@ -40,16 +41,19 @@ class InitKingdomRequest extends MySQLRequest {
             $this->setResult([self::MYSQL_CONNECTION_ERROR, $database->connect_error]);
         }
         else {
-            $result = $database->query("\nSELECT * FROM kingdoms WHERE name='$this->name'");
+            $result = $database->query("\nSELECT * FROM guilds WHERE name='{$database->escape_string($this->name)}'");
             if($result instanceof \mysqli_result) {
                 $row = $result->fetch_assoc();
                 $result->free();
                 if(is_array($row)) {
                     $this->setResult([self::MYSQL_SUCCESS, $row]);
                 }
+                else {
+                    $this->setResult([self::MYSQL_FAILURE]);
+                }
             }
             else {
-                $this->setResult([self::KINGDOM_NO_REGISTERED]);
+                $this->setResult([self::MYSQL_ERROR]);
             }
         }
         $database->close();
@@ -61,23 +65,20 @@ class InitKingdomRequest extends MySQLRequest {
             $result = $this->getResult();
             switch($result[0]) {
                 case self::MYSQL_CONNECTION_ERROR:
-                    $server->getLogger()->info("Couldn't execute InitKingdomRequest due MySQL connection error");
+                    $server->getLogger()->info("Couldn't execute InitGuildRequest due connection error!");
                     throw new \RuntimeException($result[1]);
                     break;
-                case self::KINGDOM_NO_REGISTERED:
-                    $server->getLogger()->info("Couldn't execute InitKingdomRequest due kingdom {$this->name} is not registered!");
+                case self::MYSQL_ERROR:
+                    $server->getLogger()->info("Couldn't execute InitGuildRequest due unknown error!");
+                    break;
+                case self::MYSQL_FAILURE:
+                    $server->getLogger()->info("Couldn't execute InitGuildRequest due {$this->name} isn't a valid guild!");
                     break;
                 case self::MYSQL_SUCCESS:
-                    $kingdom = $plugin->getKingdomManager()->getKingdom($this->name);
                     $row = $result[1];
-                    $kingdom->setName($row["name"]);
-                    $kingdom->setPoints($row["points"]);
-                    $kingdom->setMotto($row["motto"]);
-                    $kingdom->setLostWars($row["lostWars"]);
-                    $kingdom->setWonWars($row["wonWars"]);
-                    $kingdom->setHome($row["home"]);
-                    $kingdom->setLeader(($row["leader"] == '') ? null : $row["leader"]);
-                    $server->getLogger()->info("Kingdom {$this->name} was successfully initialized");
+                    $leader = (empty($row["leader"])) ? null : $row["leader"];
+                    $plugin->getGuildManager()->registerGuild($row["name"], $leader, $row["motto"], $row["points"], $row["class"], $row["vault"], $row["home"]);
+                    $server->getLogger()->info("{$this->name} guild was successfully registered!");
                     break;
             }
         }

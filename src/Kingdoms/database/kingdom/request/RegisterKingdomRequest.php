@@ -73,7 +73,7 @@ class RegisterKingdomRequest extends MySQLRequest {
                     break;
                 case self::MYSQL_SUCCESS:
                     $server->getLogger()->info("RegisterKingdomRequest was successfully created with {$this->name}");
-                    $plugin->getKingdomManager()->registerKingdom($this->name, 0, $this->motto, 0, 0, '');
+                    $plugin->getKingdomManager()->registerKingdom($this->name, 0, $this->motto, 0, 0, '', '');
                     break;
                 default:
                     $server->getLogger()->info("Couldn't execute RegisterKingdomRequest due unknown error");

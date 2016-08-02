@@ -12,6 +12,7 @@ use Kingdoms\database\kingdom\request\InitDatabaseRequest;
 use Kingdoms\database\kingdom\request\InitKingdomsRequest;
 use Kingdoms\database\kingdom\request\ListKingdomsRequest;
 use Kingdoms\database\kingdom\request\RegisterKingdomRequest;
+use Kingdoms\database\kingdom\request\ShowKingdomInfoRequest;
 use Kingdoms\database\kingdom\request\UpdateKingdomRequest;
 use Kingdoms\database\mysql\MySQLDatabase;
 use Kingdoms\models\kingdom\Kingdom;
@@ -67,6 +68,16 @@ class KingdomDatabase extends MySQLDatabase {
      */
     public function listKingdomList($name, $page) {
         $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new ListKingdomsRequest($this, $name, $page));
+    }
+
+    /**
+     * Show kingdom info
+     *
+     * @param string $name
+     * @param string $player
+     */
+    public function showKingdomInfo($name, $player) {
+        $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new ShowKingdomInfoRequest($this, $name, $player));
     }
 
 }

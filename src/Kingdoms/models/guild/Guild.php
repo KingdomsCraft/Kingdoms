@@ -20,7 +20,7 @@ class Guild {
     /** @var string */
     private $name;
 
-    /** @var string */
+    /** @var string|null */
     private $leader;
 
     /** @var string */
@@ -47,11 +47,11 @@ class Guild {
      * Guild constructor.
      * @param Main $plugin
      * @param string $name
-     * @param string $leader
+     * @param string|null $leader
      * @param string $motto
-     * @param int $points
-     * @param int $class
-     * @param int $vault
+     * @param $points
+     * @param $class
+     * @param $vault
      * @param string $home
      */
     public function __construct(Main $plugin, $leader, $name, $motto, $points, $class, $vault, $home) {
@@ -59,9 +59,9 @@ class Guild {
         $this->name = $name;
         $this->leader = $leader;
         $this->motto = $motto;
-        $this->points = $points;
-        $this->class = $class;
-        $this->vault = $vault;
+        $this->points = (int) $points;
+        $this->class = (int) $class;
+        $this->vault = (int) $vault;
         $this->home = $home;
     }
 
@@ -151,6 +151,15 @@ class Guild {
     }
 
     /**
+     * Return guild leader
+     *
+     * @return null|string
+     */
+    public function getLeader() {
+        return $this->leader;
+    }
+
+    /**
      * Set guild name
      *
      * @param string $name
@@ -211,5 +220,14 @@ class Guild {
      */
     public function setPoints($amount) {
         $this->points = $amount;
+    }
+
+    /**
+     * Set guild leader
+     *
+     * @param string|null $leader
+     */
+    public function setLeader($leader) {
+        $this->leader = $leader;
     }
 }

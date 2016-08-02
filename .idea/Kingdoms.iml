@@ -7,22 +7,20 @@
     <orderEntry type="module-library">
       <library name="PHARS">
         <CLASSES>
-          <root url="phar://$MODULE_DIR$/../../Path/PocketMine-MP.phar/" />
-          <root url="phar://$MODULE_DIR$/FactionsPro_v1.7.9.phar/" />
+          <root url="phar://$MODULE_DIR$/../../../../Projects/Path/PocketMine-MP.phar/" />
         </CLASSES>
         <SOURCES>
-          <root url="phar://$MODULE_DIR$/../../Path/PocketMine-MP.phar/" />
-          <root url="phar://$MODULE_DIR$/FactionsPro_v1.7.9.phar/" />
+          <root url="phar://$MODULE_DIR$/../../../../Projects/Path/PocketMine-MP.phar/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library name="PHP">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../../Path" />
+          <root url="file://$MODULE_DIR$/../../../../Projects/Path" />
         </CLASSES>
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../../Path" />
+          <root url="file://$MODULE_DIR$/../../../../Projects/Path" />
         </SOURCES>
       </library>
     </orderEntry>

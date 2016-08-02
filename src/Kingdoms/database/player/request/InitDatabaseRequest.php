@@ -2,14 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: AndrewBit
- * Date: 29/07/2016
- * Time: 22:05
+ * Date: 02/08/2016
+ * Time: 9:50
  */
 
-namespace Kingdoms\database\kingdom\request;
+namespace Kingdoms\database\player\request;
 
-use Kingdoms\database\kingdom\KingdomDatabase;
 use Kingdoms\database\mysql\MySQLRequest;
+use Kingdoms\database\player\PlayerDatabase;
 use Kingdoms\Main;
 use pocketmine\Server;
 
@@ -21,11 +21,11 @@ class InitDatabaseRequest extends MySQLRequest {
     const MYSQL_SUCCESS = 2;
 
     /**
-     * InitKingdomsRequest constructor.
+     * InitDatabaseRequest constructor.
      *
-     * @param KingdomDatabase $database
+     * @param PlayerDatabase $database
      */
-    public function __construct(KingdomDatabase $database) {
+    public function __construct(PlayerDatabase $database) {
         parent::__construct($database->getCredentials());
     }
 
@@ -35,14 +35,11 @@ class InitDatabaseRequest extends MySQLRequest {
             $this->setResult([self::MYSQL_CONNECTION_ERROR, $database->connect_error]);
         }
         else {
-            $database->query("\nCREATE TABLE IF NOT EXISTS kingdoms (
+            $database->query("\nCREATE TABLE IF NOT EXISTS kingdoms_players (
             name VARCHAR(32) PRIMARY KEY,
-            motto VARCHAR(128),
-            points INT DEFAULT 0,
-            wonWars INT DEFAULT 0,
-            lostWars INT DEFAULT 0,
-            home VARCHAR(128) DEFAULT '',
-            leader VARCHAR(128) DEFAULT '')");
+            kingdom VARCHAR(32) DEFAULT '',
+            kingdomRank TINYINT DEFAULT 0,
+            guild VARCHAR(32) DEFAULT '')");
             if(isset($database->error) and $database->error) {
                 $this->setResult([self::MYSQL_ERROR, $database->error]);
             }
@@ -53,24 +50,21 @@ class InitDatabaseRequest extends MySQLRequest {
         $database->close();
     }
 
-    /**
-     * @param Server $server
-     */
     public function onCompletion(Server $server) {
         $plugin = $this->getPlugin($server);
         if($plugin instanceof Main and $plugin->isEnabled()) {
             $result = $this->getResult();
             switch($result[0]) {
                 case self::MYSQL_CONNECTION_ERROR:
-                    $server->getLogger()->info("Couldn't execute InitDatabaseRequest due MySQL connection error");
+                    $server->getLogger()->info("Couldn't execute InitDatabaseRequest (players) due connection error!");
                     throw new \RuntimeException($result[1]);
                     break;
                 case self::MYSQL_ERROR:
-                    $server->getLogger()->info("Couldn't execute InitDatabaseRequest due database error");
+                    $server->getLogger()->info("Couldn't execute InitDatabaseRequest (players) due error {$result[1]}!");
                     throw new \RuntimeException($result[1]);
                     break;
                 case self::MYSQL_SUCCESS:
-                    $server->getLogger()->info("InitKingdomsRequest successfully done");
+                    $server->getLogger()->info("InitDatabaseRequest (players) was successfully executed!");
                     break;
             }
         }

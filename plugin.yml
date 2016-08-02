@@ -2,5 +2,5 @@ name: Kingdoms
 author: AndrewBit
 website: http://kingdomscraft.net
 main: Kingdoms\Main
-version: "0.0.1-dev#6"
+version: "0.0.1-dev#8"
 api: [2.0.0]

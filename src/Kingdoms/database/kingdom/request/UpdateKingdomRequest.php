@@ -38,6 +38,9 @@ class UpdateKingdomRequest extends MySQLRequest {
     /** @var string */
     private $home;
 
+    /** @var string|null */
+    private $leader;
+
     /**
      * UpdateKingdomRequest constructor.
      *
@@ -52,6 +55,7 @@ class UpdateKingdomRequest extends MySQLRequest {
         $this->lostWars = $data["lostWars"];
         $this->wonWars = $data["wonWars"];
         $this->home = $data["home"];
+        $this->leader = $data["leader"];
     }
 
     public function onRun() {
@@ -60,7 +64,8 @@ class UpdateKingdomRequest extends MySQLRequest {
             $this->setResult([self::MYSQL_CONNECTION_ERROR, $database->connect_error]);
         }
         else {
-            $database->query("\nUPDATE kingdoms SET name='{$database->escape_string($this->name)}, points='{$this->points}', motto='{$database->escape_string($this->motto)}', lostWars={$this->lostWars}, wonWars={$this->wonWars}, home='{$database->escape_string($this->home)} WHERE name='{$database->escape_string($this->name)}'");
+            $leader = (empty($this->leader)) ? '' : strtolower($this->leader);
+            $database->query("\nUPDATE kingdoms SET name='{$database->escape_string($this->name)}, points='{$this->points}', motto='{$database->escape_string($this->motto)}', lostWars={$this->lostWars}, wonWars={$this->wonWars}, home='{$database->escape_string($this->home)}, leader='{$leader}' WHERE name='{$database->escape_string($this->name)}'");
             if($database->affected_rows > 0) {
                 $this->setResult([self::MYSQL_SUCCESS]);
             }

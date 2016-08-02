@@ -10,7 +10,10 @@ namespace Kingdoms\command;
 
 use Kingdoms\command\kingdom\CreateCommand;
 use Kingdoms\command\kingdom\HelpCommand;
+use Kingdoms\command\kingdom\HomeCommand;
+use Kingdoms\command\kingdom\InfoCommand;
 use Kingdoms\command\kingdom\KingdomSubCommand;
+use Kingdoms\command\kingdom\SetHomeCommand;
 use Kingdoms\command\kingdom\TopCommand;
 use Kingdoms\KingdomsPlayer;
 use Kingdoms\Main;
@@ -44,6 +47,9 @@ class CommandManager {
         $this->kingdomCommands["help"] = new HelpCommand($this);
         $this->kingdomCommands["create"] = new CreateCommand($this);
         $this->kingdomCommands["top"] = new TopCommand($this);
+        $this->kingdomCommands["info"] = new InfoCommand($this);
+        $this->kingdomCommands["home"] = new HomeCommand($this);
+        $this->kingdomCommands["sethome"] = new SetHomeCommand($this);
         $this->registerAll();
     }
 

@@ -25,13 +25,29 @@ class KingdomsPlayer extends Player {
     const KINGDOM_RANK_CITIZEN = 0;
     const KINGDOM_RANK_NOBLEMAN = 1;
     const KINGDOM_RANK_KING = 2;
-    const KINGDOM_RANK_ADMIN = 3;
 
     /** @var Guild|null */
     private $guild = null;
 
     /** @var bool */
+    private $leader = false;
+
+    /** @var bool */
     private $admin = false;
+
+    /**
+     * Return player data
+     *
+     * @return array
+     */
+    public function getPlayerData() {
+        $kingdom = ($this->gotKingdom()) ? $this->getKingdom()->getName() : "No kingdom";
+        $guild = ($this->gotGuild()) ? $this->getGuild()->getName() : "No guild";
+        return [
+            "kingdom" => $kingdom,
+            "guild" => $guild
+        ];
+    }
 
     /**
      * Return if player rank is superior
@@ -94,6 +110,15 @@ class KingdomsPlayer extends Player {
     }
 
     /**
+     * Return if the player is leader (referring to the guild)
+     *
+     * @return bool
+     */
+    public function isLeader() {
+        return $this->leader;
+    }
+
+    /**
      * Set player kingdom
      *
      * @param Kingdom|null $kingdom
@@ -130,13 +155,27 @@ class KingdomsPlayer extends Player {
     }
 
     /**
+     * Set a player leader of his guild
+     *
+     * @param bool $bool
+     */
+    public function setLeader($bool = true) {
+        $this->leader = $bool;
+    }
+
+    /**
      * Send a message by key
      *
      * @param string $key
      */
     public function sendKingdomMessage($key) {
         $message = LanguageManager::getInstance()->getMessage($key);
-        // ToDo: %coins%, %kingdom%, %guild%
+        if($this->gotKingdom()) {
+            $message = str_replace("%kingdom%", $this->getKingdom()->getName(), $message);
+        }
+        if($this->gotGuild()) {
+            $message = str_replace("%guild%", $this->getGuild()->getName(), $message);
+        }
         $this->sendMessage($message);
     }
 
@@ -165,6 +204,28 @@ class KingdomsPlayer extends Player {
         $message = LanguageManager::getInstance()->getMessage("KINGDOM_TOP_PAGES");
         $message = str_replace("{page}", $page, $message);
         $message = str_replace("{maxPages}", $maxPages, $message);
+        $this->sendMessage($message);
+    }
+
+    /**
+     * Send kingdom info
+     *
+     * @param $name
+     * @param $motto
+     * @param $points
+     * @param $leader
+     * @param $warsWon
+     */
+    public function sendKingdomInfo($name, $motto, $points, $leader, $warsWon) {
+        $message = LanguageManager::getInstance()->getMessage("KINGDOM_INFO_HEADER");
+        $message = str_replace("{name}", $name, $message);
+        $this->sendMessage($message);
+        $message = LanguageManager::getInstance()->getMessage("KINGDOM_INFO");
+        $message = str_replace("{name}", $name, $message);
+        $message = str_replace("{motto}", $motto, $message);
+        $message = str_replace("{points}", $points, $message);
+        $message = str_replace("{leader}", $leader, $message);
+        $message = str_replace("{warsWon}", $warsWon, $message);
         $this->sendMessage($message);
     }
 

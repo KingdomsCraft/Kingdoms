@@ -32,7 +32,7 @@ class CreateCommand extends SubCommand implements KingdomSubCommand {
                         if(isset($args[1])) {
                             $motto = $args;
                             unset($motto[0]);
-                            $motto = explode(" ", $motto);
+                            $motto = implode(" ", $motto);
                         }
                         else {
                             $motto = "This is an amazing kingdom!";

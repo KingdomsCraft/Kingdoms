@@ -79,17 +79,20 @@ class ListKingdomsRequest extends MySQLRequest {
                         while($row = $result->fetch_assoc()) {
                             $i++;
                         }
-                        $maxPages = floor($i / 5);
+                        $maxPages = round($i / 5);
                         $result->free();
                         if($this->page > $maxPages) {
                             $player->sendKingdomMessage("KINGDOM_TOP_FAILED_REASON_PAGE");
                         }
                         else {
                             $player->sendPageAmount($this->page, $maxPages);
-                            $result = $database->query("\nSELECT * FROM kingdoms");
-                            $rank = 1 * $this->page;
+                            $result = $database->query("\nSELECT * FROM kingdoms ORDER BY points DESC LIMIT {$i}");
+                            $rank = 1;
+                            $rankTo = ($this->page == 1) ? 1 : $this->page * 5;
                             while($row = $result->fetch_assoc()) {
-                                $player->sendRankedKingdom($rank, $row["name"], $row["points"]);
+                                if($rank >= $rankTo) {
+                                    $player->sendRankedKingdom($rank, $row["name"], $row["points"]);
+                                }
                                 $rank++;
                             }
                             $result->free();

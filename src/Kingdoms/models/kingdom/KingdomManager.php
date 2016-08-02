@@ -71,8 +71,9 @@ class KingdomManager {
      * @param $lostWars
      * @param $wonWars
      * @param $home
+     * @param $leader
      */
-    public function registerKingdom($name, $points, $motto, $lostWars, $wonWars, $home) {
-        $this->kingdoms[$name] = new Kingdom($this->plugin, $name, $points, $motto, $lostWars, $wonWars, $home);
+    public function registerKingdom($name, $points, $motto, $lostWars, $wonWars, $home, $leader) {
+        $this->kingdoms[$name] = new Kingdom($this->plugin, $name, $points, $motto, $lostWars, $wonWars, $home, $leader);
     }
 }
