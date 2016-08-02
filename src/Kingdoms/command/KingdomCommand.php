@@ -54,6 +54,9 @@ class KingdomCommand extends Command {
                     case "sethome":
                         $this->commandManager->kingdom_execute("sethome", $sender, $args);
                         break;
+                    case "list":
+                        $this->commandManager->kingdom_execute("list", $sender, $args);
+                        break;
                     default:
                         $sender->sendKingdomMessage("KINGDOM_COMMAND_USAGE");
                         break;

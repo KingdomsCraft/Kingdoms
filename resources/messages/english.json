@@ -1,7 +1,7 @@
 {
   "KINGDOM_COMMAND_USAGE":"{RED}* {YELLOW}If you don't know how to use this command, try using {WHITE}/k help{YELLOW}!",
   "HELP_HEADER":"{YELLOW}____|--{WHITE}{page} of 5{YELLOW}--|____",
-  "HELP_PAGE_1":"{WHITE}/k create <kingdom> [motto]: Create a kingdom\n{WHITE}/k top: Show top kingdoms\n{WHITE/k info [kingdom=your]: Show kingdom info}\n/k home: Teleport to your kingdom home",
+  "HELP_PAGE_1":"{WHITE}/k create <kingdom> [motto]: Create a kingdom\n{WHITE}/k top: Show top kingdoms\n{WHITE/k info [kingdom=your]: Show kingdom info}\n{WHITE}/k home: Teleport to your kingdom home\n{WHITE}/k list: Show online players by kingdom",
   "HELP_PAGE_2":"",
   "HELP_PAGE_3":"",
   "HELP_PAGE_4":"",
@@ -27,5 +27,7 @@
   "KINGDOM_JOIN_FAILED_BY_KINGDOM":"{RED}* {YELLOW}You cannot join a kingdom if you already got one!",
   "KINGDOM_JOIN_USAGE":"{RED}* {YELLOW}Please, set a kingdom! Usage: {WHITE}/k join <kingdom>",
   "KINGDOM_JOIN_FAILED_BY_KINGDOM_EXISTS":"{RED}* {YELLOW}You cannot join this kingdom because it doesn't exists!",
-  "KINGDOM_JOIN_SUCCESS":"{GREEN}* {WHITE}You joined {AQUA}%kingdom% {WHITE}success!"
+  "KINGDOM_JOIN_SUCCESS":"{GREEN}* {WHITE}You joined {AQUA}%kingdom% {WHITE}success!",
+  "LIST_HEADER":"{YELLOW}_______|{WHITE} Online {YELLOW}|_______",
+  "LIST_MESSAGE":"{WHITE}{kingdom}: {RED}{online}"
 }

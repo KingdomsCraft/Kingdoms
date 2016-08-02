@@ -13,6 +13,7 @@ use Kingdoms\command\kingdom\HelpCommand;
 use Kingdoms\command\kingdom\HomeCommand;
 use Kingdoms\command\kingdom\InfoCommand;
 use Kingdoms\command\kingdom\KingdomSubCommand;
+use Kingdoms\command\kingdom\ListCommand;
 use Kingdoms\command\kingdom\SetHomeCommand;
 use Kingdoms\command\kingdom\TopCommand;
 use Kingdoms\KingdomsPlayer;
@@ -50,6 +51,7 @@ class CommandManager {
         $this->kingdomCommands["info"] = new InfoCommand($this);
         $this->kingdomCommands["home"] = new HomeCommand($this);
         $this->kingdomCommands["sethome"] = new SetHomeCommand($this);
+        $this->kingdomCommands["list"] = new ListCommand($this);
         $this->registerAll();
     }
 
