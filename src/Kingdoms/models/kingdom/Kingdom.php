@@ -251,4 +251,11 @@ class Kingdom {
         $this->leader = $name;
     }
 
+    /**
+     * Update the kingdom
+     */
+    public function update() {
+        $this->plugin->getPluginDatabase()->getKingdomDatabase()->updateKingdom($this);
+    }
+
 }

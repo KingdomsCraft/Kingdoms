@@ -92,6 +92,15 @@ class KingdomsPlayer extends Player {
     }
 
     /**
+     * Return player kingdom rank
+     *
+     * @return int
+     */
+    public function getKingdomRank() {
+        return $this->kingdomRank;
+    }
+
+    /**
      * Return player guild
      *
      * @return Guild|null
@@ -227,6 +236,13 @@ class KingdomsPlayer extends Player {
         $message = str_replace("{leader}", $leader, $message);
         $message = str_replace("{warsWon}", $warsWon, $message);
         $this->sendMessage($message);
+    }
+
+    /**
+     * Update the player
+     */
+    public function update() {
+        Main::getInstance()->getPluginDatabase()->getPlayerDatabase()->updatePlayer($this->getName());
     }
 
 }

@@ -77,7 +77,7 @@ class InitGuildRequest extends MySQLRequest {
                 case self::MYSQL_SUCCESS:
                     $row = $result[1];
                     $leader = (empty($row["leader"])) ? null : $row["leader"];
-                    $plugin->getGuildManager()->registerGuild($row["name"], $leader, $row["motto"], $row["points"], $row["class"], $row["vault"], $row["home"]);
+                    $plugin->getGuildManager()->registerGuild($row["name"], $leader, $row["motto"], $row["points"], $row["class"], $row["vault"], $row["home"], $row["kingdom"]);
                     $server->getLogger()->info("{$this->name} guild was successfully registered!");
                     break;
             }

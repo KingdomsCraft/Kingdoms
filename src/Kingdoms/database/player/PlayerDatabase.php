@@ -12,6 +12,7 @@ use Kingdoms\database\mysql\MySQLDatabase;
 use Kingdoms\database\player\request\InitDatabaseRequest;
 use Kingdoms\database\player\request\LoginPlayerRequest;
 use Kingdoms\database\player\request\RegisterPlayerRequest;
+use Kingdoms\database\player\request\UpdatePlayerRequest;
 
 class PlayerDatabase extends MySQLDatabase {
 
@@ -45,6 +46,15 @@ class PlayerDatabase extends MySQLDatabase {
      */
     public function registerPlayer($name) {
         $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new RegisterPlayerRequest($this, $name));
+    }
+
+    /**
+     * Update a player
+     *
+     * @param string $name
+     */
+    public function updatePlayer($name) {
+        $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new UpdatePlayerRequest($this, $name));
     }
 
 }

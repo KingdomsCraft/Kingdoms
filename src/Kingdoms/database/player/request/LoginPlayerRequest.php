@@ -12,6 +12,7 @@ use Kingdoms\database\mysql\MySQLRequest;
 use Kingdoms\database\player\PlayerDatabase;
 use Kingdoms\KingdomsPlayer;
 use Kingdoms\Main;
+use Kingdoms\models\guild\Guild;
 use pocketmine\Server;
 
 class LoginPlayerRequest extends MySQLRequest {
@@ -98,9 +99,15 @@ class LoginPlayerRequest extends MySQLRequest {
                         else {
                             $plugin->getPluginDatabase()->getGuildDatabase()->initGuild($row["guild"]);
                             if($guildManager->isGuild($row["guild"])) {
-                                $player->setGuild($guildManager->getGuild($row["guild"]));
+                                /** @var Guild $guild */
+                                $guild = $guildManager->getGuild($row["guild"]);
+                                $player->setGuild($guild);
+                                if(strtolower($player->getName()) == $guild->getLeader()) {
+                                    $player->setLeader();
+                                }
                             }
                         }
+                        $player->setAdmin($row["admin"] ? true : false);
                         $server->getLogger()->info("LoginPlayerRequest successfully executed with {$this->name}");
                         break;
                 }

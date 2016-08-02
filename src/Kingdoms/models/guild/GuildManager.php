@@ -59,16 +59,17 @@ class GuildManager {
     /**
      * Register a guild
      *
-     * @param $name
-     * @param $leader
-     * @param $motto
+     * @param string $name
+     * @param string $leader
+     * @param string $motto
      * @param $points
      * @param $class
      * @param $vault
-     * @param $home
+     * @param string $home
+     * @param string $kingdom
      */
-    public function registerGuild($name, $leader, $motto, $points, $class, $vault, $home) {
-        $this->guilds[$name] = new Guild($this->plugin, $leader, $name, $motto, $points, $class, $vault, $home);
+    public function registerGuild($name, $leader, $motto, $points, $class, $vault, $home, $kingdom) {
+        $this->guilds[$name] = new Guild($this->plugin, $leader, $name, $motto, $points, $class, $vault, $home, $kingdom);
     }
 
 }

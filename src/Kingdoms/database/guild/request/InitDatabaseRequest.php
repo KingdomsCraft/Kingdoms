@@ -42,7 +42,8 @@ class InitDatabaseRequest extends MySQLRequest {
             class INT DEFAULT 0,
             vault INT DEFAULT 0,
             points INT DEFAULT 0,
-            home VARCHAR(128) DEFAULT '')");
+            home VARCHAR(128) DEFAULT '',
+            kingdom VARCHAR(128))");
             if(isset($database->error) and $database->error) {
                 $this->setResult([self::MYSQL_ERROR, $database->error]);
             }

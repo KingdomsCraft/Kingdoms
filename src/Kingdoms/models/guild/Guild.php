@@ -8,6 +8,7 @@
 
 namespace Kingdoms\models\guild;
 
+use Kingdoms\KingdomsPlayer;
 use Kingdoms\Main;
 use pocketmine\level\Level;
 use pocketmine\level\Position;
@@ -43,6 +44,9 @@ class Guild {
     /** @var string */
     private $home;
 
+    /** @var string */
+    private $kingdom;
+
     /**
      * Guild constructor.
      * @param Main $plugin
@@ -53,8 +57,9 @@ class Guild {
      * @param $class
      * @param $vault
      * @param string $home
+     * @param string $kingdom
      */
-    public function __construct(Main $plugin, $leader, $name, $motto, $points, $class, $vault, $home) {
+    public function __construct(Main $plugin, $leader, $name, $motto, $points, $class, $vault, $home, $kingdom) {
         $this->plugin = $plugin;
         $this->name = $name;
         $this->leader = $leader;
@@ -63,6 +68,25 @@ class Guild {
         $this->class = (int) $class;
         $this->vault = (int) $vault;
         $this->home = $home;
+        $this->kingdom = $kingdom;
+    }
+
+    /**
+     * Return guild data
+     *
+     * @return array
+     */
+    public function getData() {
+        return [
+            "name" => $this->name,
+            "leader" => $this->leader,
+            "motto" => $this->motto,
+            "points" => $this->points,
+            "class" => $this->class,
+            "vault" => $this->vault,
+            "home" => $this->home,
+            "kingdom" => $this->kingdom
+        ];
     }
 
     /**
@@ -160,6 +184,15 @@ class Guild {
     }
 
     /**
+     * Return guild kingdom
+     *
+     * @return string
+     */
+    public function getKingdom() {
+        return $this->kingdom;
+    }
+
+    /**
      * Set guild name
      *
      * @param string $name
@@ -228,6 +261,28 @@ class Guild {
      * @param string|null $leader
      */
     public function setLeader($leader) {
+        if($leader != $this->leader) {
+            $player = $this->plugin->getServer()->getPlayerExact($this->leader);
+            if($player instanceof KingdomsPlayer and $player->isOnline()) {
+                $player->setLeader(false);
+            }
+        }
         $this->leader = $leader;
+    }
+
+    /**
+     * Set guild kingdom
+     *
+     * @param string $kingdom
+     */
+    public function setKingdom($kingdom) {
+        $this->kingdom = $kingdom;
+    }
+
+    /**
+     * Update the guild
+     */
+    public function update() {
+        $this->plugin->getPluginDatabase()->getGuildDatabase()->updateGuild($this);
     }
 }
