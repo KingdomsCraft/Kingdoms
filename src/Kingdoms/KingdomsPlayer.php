@@ -224,8 +224,10 @@ class KingdomsPlayer extends Player {
      * @param $points
      * @param $leader
      * @param $warsWon
+     * @param $rank
+     * @param $citizens
      */
-    public function sendKingdomInfo($name, $motto, $points, $leader, $warsWon) {
+    public function sendKingdomInfo($name, $motto, $points, $leader, $warsWon, $rank, $citizens) {
         $message = LanguageManager::getInstance()->getMessage("KINGDOM_INFO_HEADER");
         $message = str_replace("{name}", $name, $message);
         $this->sendMessage($message);
@@ -235,6 +237,8 @@ class KingdomsPlayer extends Player {
         $message = str_replace("{points}", $points, $message);
         $message = str_replace("{leader}", $leader, $message);
         $message = str_replace("{warsWon}", $warsWon, $message);
+        $message = str_replace("{rank}", $rank, $message);
+        $message = str_replace("{citizens}", $citizens, $message);
         $this->sendMessage($message);
     }
 

@@ -8,14 +8,14 @@
 
 namespace Kingdoms\command\kingdom;
 
-use Kingdoms\KingdomsPlayer;
+use pocketmine\command\CommandSender;
 
 interface KingdomSubCommand {
 
     /**
-     * @param KingdomsPlayer $sender
+     * @param CommandSender $sender
      * @param array $args
      */
-    public function execute(KingdomsPlayer $sender, $args);
+    public function execute(CommandSender $sender, $args);
 
 }

@@ -10,6 +10,7 @@ namespace Kingdoms\command\kingdom;
 
 use Kingdoms\command\SubCommand;
 use Kingdoms\KingdomsPlayer;
+use pocketmine\command\CommandSender;
 use pocketmine\level\Position;
 
 class HomeCommand extends SubCommand implements KingdomSubCommand {
@@ -17,22 +18,24 @@ class HomeCommand extends SubCommand implements KingdomSubCommand {
     /**
      * Execute home command
      *
-     * @param KingdomsPlayer $sender
+     * @param CommandSender $sender
      * @param array $args
      */
-    public function execute(KingdomsPlayer $sender, $args) {
-        if($sender->gotKingdom()) {
-            $home = $sender->getKingdom()->getHomePosition();
-            if($home instanceof Position) {
-                $sender->teleport($home);
-                $sender->sendKingdomMessage("KINGDOM_HOME_SUCCESS");
+    public function execute(CommandSender $sender, $args) {
+        if($sender instanceof KingdomsPlayer) {
+            if($sender->gotKingdom()) {
+                $home = $sender->getKingdom()->getHomePosition();
+                if($home instanceof Position) {
+                    $sender->teleport($home);
+                    $sender->sendKingdomMessage("KINGDOM_HOME_SUCCESS");
+                }
+                else {
+                    $sender->sendKingdomMessage("KINGDOM_HOME_FAILED_BY_HOME");
+                }
             }
             else {
-                $sender->sendKingdomMessage("KINGDOM_HOME_FAILED_BY_HOME");
+                $sender->sendKingdomMessage("KINGDOM_HOME_FAILED_BY_KINGDOM");
             }
-        }
-        else {
-            $sender->sendKingdomMessage("KINGDOM_HOME_FAILED_BY_KINGDOM");
         }
     }
 

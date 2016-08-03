@@ -1,8 +1,8 @@
 {
   "KINGDOM_COMMAND_USAGE":"{RED}* {YELLOW}If you don't know how to use this command, try using {WHITE}/k help{YELLOW}!",
   "HELP_HEADER":"{YELLOW}____|--{WHITE}{page} of 5{YELLOW}--|____",
-  "HELP_PAGE_1":"{WHITE}/k create <kingdom> [motto]: Create a kingdom\n{WHITE}/k top: Show top kingdoms\n{WHITE/k info [kingdom=your]: Show kingdom info}\n{WHITE}/k home: Teleport to your kingdom home\n{WHITE}/k list: Show online players by kingdom",
-  "HELP_PAGE_2":"",
+  "HELP_PAGE_1":"{WHITE}/k create <kingdom> [motto]: Create a kingdom\n{WHITE}/k top: Show top kingdoms\n{WHITE}/k info [kingdom=your]: Show kingdom info\n{WHITE}/k home: Teleport to your kingdom home\n{WHITE}/k list: Show online players by kingdom",
+  "HELP_PAGE_2":"{WHITE}/k join <kingdom>: Join a kingdom\n{WHITE}/k leave: Leave your kingdom by 25 of gold",
   "HELP_PAGE_3":"",
   "HELP_PAGE_4":"",
   "HELP_PAGE_5":"",
@@ -16,7 +16,7 @@
   "KINGDOM_TOP_FAILED_REASON_PAGE":"{RED}* {YELLOW}This page doesn't exists!",
   "KINGDOM_INFO_FAILED_BY_KINGDOM":"{RED}* {YELLOW}Couldn't show this kingdom info because it doesn't exists!",
   "KINGDOM_INFO_HEADER":"{YELLOW}_____|{RED}{name} {WHITE}info{YELLOW}|_____",
-  "KINGDOM_INFO":"{WHITE}Name: {name}\n{WHITE}Motto: {motto}\n{WHITE}Points: {points}\n{WHITE}Leader: {leader}\n{WHITE}Wars won: {RED}{warsWon}",
+  "KINGDOM_INFO":"{WHITE}Name: {name}\n{WHITE}Rank: {rank}\n{WHITE}Motto: {motto}\n{WHITE}Points: {points}\n{WHITE}Leader: {leader}\n{WHITE}Wars won: {RED}{warsWon}\n{WHITE}Citizens: {citizens}",
   "KINGDOM_INFO_FAILED_ESCAPE":"{RED}* {YELLOW}You should use this as {WHITE}/k info <kingdom> {YELLOW}if you aren't in one!",
   "KINGDOM_HOME_FAILED_BY_KINGDOM":"{RED}* {YELLOW}You should be in a kingdom to use this command!",
   "KINGDOM_HOME_FAILED_BY_HOME":"{RED}* {YELLOW}Your kingdom hasn't a home!",
@@ -29,5 +29,8 @@
   "KINGDOM_JOIN_FAILED_BY_KINGDOM_EXISTS":"{RED}* {YELLOW}You cannot join this kingdom because it doesn't exists!",
   "KINGDOM_JOIN_SUCCESS":"{GREEN}* {WHITE}You joined {AQUA}%kingdom% {WHITE}success!",
   "LIST_HEADER":"{YELLOW}_______|{WHITE} Online {YELLOW}|_______",
-  "LIST_MESSAGE":"{WHITE}{kingdom}: {RED}{online}"
+  "LIST_MESSAGE":"{WHITE}{kingdom}: {RED}{online}",
+  "LEAVE_FAILED_BY_KINGDOM":"{RED}* {YELLOW}You couldn't execute this command if you aren't in a kingdom!",
+  "LEAVE_SUCCESS":"{RED}* {YELLOW}You left successfully your kingdom by {GOLD}25 {YELLOW}of gold!",
+  "LEAVE_FAILED_BY_MONEY":"{RED}* {YELLOW}You need at least 25 of gold to execute this command!"
 }

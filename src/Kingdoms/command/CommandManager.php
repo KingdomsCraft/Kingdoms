@@ -12,12 +12,13 @@ use Kingdoms\command\kingdom\CreateCommand;
 use Kingdoms\command\kingdom\HelpCommand;
 use Kingdoms\command\kingdom\HomeCommand;
 use Kingdoms\command\kingdom\InfoCommand;
+use Kingdoms\command\kingdom\JoinCommand;
 use Kingdoms\command\kingdom\KingdomSubCommand;
 use Kingdoms\command\kingdom\ListCommand;
 use Kingdoms\command\kingdom\SetHomeCommand;
 use Kingdoms\command\kingdom\TopCommand;
-use Kingdoms\KingdomsPlayer;
 use Kingdoms\Main;
+use pocketmine\command\CommandSender;
 
 class CommandManager {
 
@@ -52,6 +53,7 @@ class CommandManager {
         $this->kingdomCommands["home"] = new HomeCommand($this);
         $this->kingdomCommands["sethome"] = new SetHomeCommand($this);
         $this->kingdomCommands["list"] = new ListCommand($this);
+        $this->kingdomCommands["join"] = new JoinCommand($this);
         $this->registerAll();
     }
 
@@ -67,10 +69,10 @@ class CommandManager {
      * Execute a Kingdom subcommand
      *
      * @param string $command
-     * @param KingdomsPlayer $sender
+     * @param CommandSender $sender
      * @param array $args
      */
-    public function kingdom_execute($command, KingdomsPlayer $sender, $args) {
+    public function kingdom_execute($command, CommandSender $sender, $args) {
         unset($args[0]);
         $args = implode(" ", $args);
         $args = explode(" ", $args);

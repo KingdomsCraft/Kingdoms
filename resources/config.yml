@@ -6,4 +6,6 @@ msgFile: "english.json"
 min-k-chars: 1
 # Max Kingdom characters
 max-k-chars: 6
+# Leave price
+leave-price: 25
 ...

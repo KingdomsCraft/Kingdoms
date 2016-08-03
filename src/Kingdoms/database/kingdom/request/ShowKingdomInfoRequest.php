@@ -45,12 +45,17 @@ class ShowKingdomInfoRequest extends MySQLRequest {
             $this->setResult([self::MYSQL_CONNECTION_ERROR, $database->connect_error]);
         }
         else {
-            $result = $database->query("\nSELECT * FROM kingdoms WHERE name='{$this->kingdom}'");
-            if($result instanceof \mysqli_result) {
+            $name = $database->escape_string($this->kingdom);
+            $result = $database->query("\nSELECT * FROM kingdoms WHERE name='{$name}'");
+            $database->query("SET @rownum := 0");
+            $result2 = $database->query("\nSELECT * FROM ( SELECT name, points, @rownum := @rownum + 1 AS rank FROM kingdoms ORDER BY points DESC ) as result WHERE name='{$name}'");
+            $result3 = $database->query("\nSELECT COUNT(*) as citizens FROM kingdoms_players WHERE kingdom='{$name}' and kingdomRank=0");
+            if($result instanceof \mysqli_result and $result2 instanceof \mysqli_result and $result3 instanceof \mysqli_result) {
                 $row = $result->fetch_assoc();
+                $row2 = $result2->fetch_assoc();
+                $row3 = $result3->fetch_assoc();
                 $result->free();
-                $this->setResult([self::MYSQL_SUCCESS, $row]);
-                // check top guild query and query to get all citizens
+                $this->setResult([self::MYSQL_SUCCESS, $row, $row2, $row3]);
             }
             else {
                 $this->setResult([self::MYSQL_ERROR]);
@@ -74,9 +79,9 @@ class ShowKingdomInfoRequest extends MySQLRequest {
                         break;
                     case self::MYSQL_SUCCESS:
                         $row = $result[1];
-                        if(is_array($row)) {
+                        if(is_array($row) and is_array($result[2]) and is_array($result[3])) {
                             $leader = (empty($row["leader"])) ? "No leader" : $row["leader"];
-                            $player->sendKingdomInfo($row["name"], $row["motto"], $row["points"], $leader, $row["wonWars"]);
+                            $player->sendKingdomInfo($row["name"], $row["motto"], $row["points"], $leader, $row["wonWars"], $result[2]["rank"], $result[3]["citizens"]);
                         }
                         else {
                             $player->sendKingdomMessage("KINGDOM_INFO_FAILED_BY_KINGDOM");

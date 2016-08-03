@@ -33,41 +33,43 @@ class KingdomCommand extends Command {
     }
 
     public function execute(CommandSender $sender, $commandLabel, array $args) {
-        if($sender instanceof KingdomsPlayer) {
-            if(isset($args[0])) {
-                switch(strtolower($args[0])) {
-                    case "help":
-                        $this->commandManager->kingdom_execute("help", $sender, $args);
-                        break;
-                    case "create":
-                        $this->commandManager->kingdom_execute("create", $sender, $args);
-                        break;
-                    case "top":
-                        $this->commandManager->kingdom_execute("top", $sender, $args);
-                        break;
-                    case "info":
-                        $this->commandManager->kingdom_execute("info", $sender, $args);
-                        break;
-                    case "home":
-                        $this->commandManager->kingdom_execute("home", $sender, $args);
-                        break;
-                    case "sethome":
-                        $this->commandManager->kingdom_execute("sethome", $sender, $args);
-                        break;
-                    case "list":
-                        $this->commandManager->kingdom_execute("list", $sender, $args);
-                        break;
-                    default:
+        if(isset($args[0])) {
+            switch(strtolower($args[0])) {
+                case "help":
+                    $this->commandManager->kingdom_execute("help", $sender, $args);
+                    break;
+                case "create":
+                    $this->commandManager->kingdom_execute("create", $sender, $args);
+                    break;
+                case "top":
+                    $this->commandManager->kingdom_execute("top", $sender, $args);
+                    break;
+                case "info":
+                    $this->commandManager->kingdom_execute("info", $sender, $args);
+                    break;
+                case "home":
+                    $this->commandManager->kingdom_execute("home", $sender, $args);
+                    break;
+                case "sethome":
+                    $this->commandManager->kingdom_execute("sethome", $sender, $args);
+                    break;
+                case "list":
+                    $this->commandManager->kingdom_execute("list", $sender, $args);
+                    break;
+                case "join":
+                    $this->commandManager->kingdom_execute("join", $sender, $args);
+                    break;
+                default:
+                    if($sender instanceof KingdomsPlayer) {
                         $sender->sendKingdomMessage("KINGDOM_COMMAND_USAGE");
-                        break;
-                }
-            }
-            else {
-                $sender->sendKingdomMessage("KINGDOM_COMMAND_USAGE");
+                    }
+                    break;
             }
         }
         else {
-            $sender->sendMessage("Please, run this command in-game.");
+            if($sender instanceof KingdomsPlayer) {
+                $sender->sendKingdomMessage("KINGDOM_COMMAND_USAGE");
+            }
         }
     }
 

@@ -62,6 +62,17 @@ class Kingdom {
     }
 
     /**
+     * Return Kingdom name if the object is used as a string.
+     * Anyway, use it as a string is bad practice, if you're
+     * going to get the name, use getName method instead!
+     *
+     * @return string
+     */
+    public function __toString() {
+        return $this->getName();
+    }
+
+    /**
      * Return Kingdom data
      *
      * @return array

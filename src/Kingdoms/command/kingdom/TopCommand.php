@@ -10,26 +10,29 @@ namespace Kingdoms\command\kingdom;
 
 use Kingdoms\command\SubCommand;
 use Kingdoms\KingdomsPlayer;
+use pocketmine\command\CommandSender;
 
 class TopCommand extends SubCommand implements KingdomSubCommand {
 
     /**
      * Execute top command
      *
-     * @param KingdomsPlayer $sender
+     * @param CommandSender $sender
      * @param array $args
      */
-    public function execute(KingdomsPlayer $sender, $args) {
-        if(isset($args[0])) {
-            $page = (int)$args[0];
-            if(!$page > 0) {
+    public function execute(CommandSender $sender, $args) {
+        if($sender instanceof KingdomsPlayer) {
+            if(isset($args[0])) {
+                $page = (int)$args[0];
+                if(!$page > 0) {
+                    $page = 1;
+                }
+            }
+            else {
                 $page = 1;
             }
+            $this->getPlugin()->getPluginDatabase()->getKingdomDatabase()->listKingdomList($sender->getName(), $page);
         }
-        else {
-            $page = 1;
-        }
-        $this->getPlugin()->getPluginDatabase()->getKingdomDatabase()->listKingdomList($sender->getName(), $page);
     }
 
 }
