@@ -12,6 +12,7 @@ use Kingdoms\KingdomsPlayer;
 use Kingdoms\Main;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\utils\TextFormat;
 
 class KingdomCommand extends Command {
 
@@ -59,6 +60,43 @@ class KingdomCommand extends Command {
                 case "join":
                     $this->commandManager->kingdom_execute("join", $sender, $args);
                     break;
+                case "leave":
+                    $this->commandManager->kingdom_execute("leave", $sender, $args);
+                    break;
+                case "heal":
+                    $this->commandManager->kingdom_execute("heal", $sender, $args);
+                    break;
+                case "broadcast":
+                    $this->commandManager->kingdom_execute("broadcast", $sender, $args);
+                    break;
+                case "delete":
+                    $this->commandManager->kingdom_execute("delete", $sender, $args);
+                    break;
+                case "motto":
+                    $this->commandManager->kingdom_execute("motto", $sender, $args);
+                    break;
+                case "setcitizen":
+                    $this->commandManager->kingdom_execute("setcitizen", $sender, $args);
+                    break;
+                case "setnobleman":
+                    $this->commandManager->kingdom_execute("setnobleman", $sender, $args);
+                    break;
+                case "setleader":
+                    $this->commandManager->kingdom_execute("setleader", $sender, $args);
+                    break;
+                case "setpoints":
+                    $this->commandManager->kingdom_execute("setpoints", $sender, $args);
+                    break;
+                case "addpoints":
+                    $this->commandManager->kingdom_execute("addpoints", $sender, $args);
+                    break;
+                case "addpointsbyplayer":
+                case "addpointsbyplayername":
+                    $this->commandManager->kingdom_execute("addpointsbyplayername", $sender, $args);
+                    break;
+                case "removepoints":
+                    $this->commandManager->kingdom_execute("removepoints", $sender, $args);
+                    break;
                 default:
                     if($sender instanceof KingdomsPlayer) {
                         $sender->sendKingdomMessage("KINGDOM_COMMAND_USAGE");
@@ -69,6 +107,9 @@ class KingdomCommand extends Command {
         else {
             if($sender instanceof KingdomsPlayer) {
                 $sender->sendKingdomMessage("KINGDOM_COMMAND_USAGE");
+            }
+            else {
+                $sender->sendMessage(TextFormat::RED . "* " . TextFormat::YELLOW . "If you don't know how to use this command, try using" . TextFormat::WHITE  . " /k help");
             }
         }
     }

@@ -41,8 +41,7 @@ class InitDatabaseRequest extends MySQLRequest {
             points INT DEFAULT 0,
             wonWars INT DEFAULT 0,
             lostWars INT DEFAULT 0,
-            home VARCHAR(128) DEFAULT '',
-            leader VARCHAR(128) DEFAULT '')");
+            home VARCHAR(128) DEFAULT '')");
             if(isset($database->error) and $database->error) {
                 $this->setResult([self::MYSQL_ERROR, $database->error]);
             }

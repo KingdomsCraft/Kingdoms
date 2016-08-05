@@ -22,7 +22,7 @@ class InfoCommand extends SubCommand implements KingdomSubCommand {
      */
     public function execute(CommandSender $sender, $args) {
         if($sender instanceof KingdomsPlayer) {
-            if(isset($args[0])) {
+            if(isset($args[0]) and !empty($args[0])) {
                 $this->getPlugin()->getPluginDatabase()->getKingdomDatabase()->showKingdomInfo($args[0], $sender->getName());
             }
             else {

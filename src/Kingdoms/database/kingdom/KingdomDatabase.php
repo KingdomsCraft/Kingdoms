@@ -8,6 +8,8 @@
 
 namespace Kingdoms\database\kingdom;
 
+use Kingdoms\database\kingdom\request\AddCoinsByPlayerNameKingdomRequest;
+use Kingdoms\database\kingdom\request\DeleteKingdomRequest;
 use Kingdoms\database\kingdom\request\InitDatabaseRequest;
 use Kingdoms\database\kingdom\request\InitKingdomsRequest;
 use Kingdoms\database\kingdom\request\ListKingdomsRequest;
@@ -78,6 +80,25 @@ class KingdomDatabase extends MySQLDatabase {
      */
     public function showKingdomInfo($name, $player) {
         $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new ShowKingdomInfoRequest($this, $name, $player));
+    }
+
+    /**
+     * Delete a kingdom
+     *
+     * @param string $name
+     */
+    public function deleteKingdom($name) {
+        $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new DeleteKingdomRequest($this, $name));
+    }
+
+    /**
+     * Add coins by a player name, remove if it's a negative number!
+     *
+     * @param $name
+     * @param $amount
+     */
+    public function addCoinsByPlayerName($name, $amount) {
+        $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new AddCoinsByPlayerNameKingdomRequest($this, $name, $amount));
     }
 
 }

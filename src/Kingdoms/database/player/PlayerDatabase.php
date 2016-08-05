@@ -12,6 +12,7 @@ use Kingdoms\database\mysql\MySQLDatabase;
 use Kingdoms\database\player\request\InitDatabaseRequest;
 use Kingdoms\database\player\request\LoginPlayerRequest;
 use Kingdoms\database\player\request\RegisterPlayerRequest;
+use Kingdoms\database\player\request\SetRankPlayerRequest;
 use Kingdoms\database\player\request\UpdatePlayerRequest;
 
 class PlayerDatabase extends MySQLDatabase {
@@ -57,4 +58,14 @@ class PlayerDatabase extends MySQLDatabase {
         $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new UpdatePlayerRequest($this, $name));
     }
 
+    /**
+     * Set a player rank
+     *
+     * @param string $player
+     * @param $rank
+     * @param bool $delete
+     */
+    public function setPlayerRank($player, $rank, $delete = false) {
+        $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new SetRankPlayerRequest($this, $player, $rank, $delete));
+    }
 }

@@ -8,4 +8,7 @@ min-k-chars: 1
 max-k-chars: 6
 # Leave price
 leave-price: 25
+# Maps were you can set kingdom homes
+home-maps:
+- "Forest"
 ...

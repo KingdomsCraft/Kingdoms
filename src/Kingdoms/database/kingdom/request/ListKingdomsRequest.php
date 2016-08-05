@@ -44,7 +44,7 @@ class ListKingdomsRequest extends MySQLRequest {
         parent::__construct($database->getCredentials());
         $this->name = $name;
         $this->page = ((int) $page <= 1) ? 1 : (int) $page;
-        $this->minor = ($this->page <= 1) ? 1 : $this->page * 5;
+        $this->minor = ($this->page <= 1) ? 1 : ($this->page - 1) * 5;
         $this->mayor = $this->minor + 4;
     }
 

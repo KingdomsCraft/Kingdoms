@@ -23,14 +23,14 @@ class CreateCommand extends SubCommand implements KingdomSubCommand {
     public function execute(CommandSender $sender, $args) {
         if ($sender instanceof KingdomsPlayer) {
             if ($sender->isAdmin() or $sender->isOp()) {
-                if (isset($args[0])) {
+                if (isset($args[0]) and !empty($args[0])) {
                     $name = strtoupper($args[0]);
                     if ($this->getPlugin()->getKingdomManager()->isKingdom($name)) {
                         $sender->sendKingdomMessage("KINGDOM_CREATE_FAILED_BY_KINGDOM");
                     } else {
                         $config = $this->getPlugin()->getConfig()->getAll();
                         if (strlen($name) <= ((int)$config["max-k-chars"]) and strlen($name) >= ((int)$config["min-k-chars"])) {
-                            if (isset($args[1])) {
+                            if (isset($args[1]) and !empty($args[1])) {
                                 $motto = $args;
                                 unset($motto[0]);
                                 $motto = implode(" ", $motto);

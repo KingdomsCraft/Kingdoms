@@ -153,7 +153,7 @@ class Kingdom {
         if(isset($pos[3])) {
             $level = $this->plugin->getServer()->getLevelByName($pos[3]);
             if($level instanceof Level) {
-                return new Position(intval($pos[0]), intval($pos[1]), intval($pos[2]), $pos[3]);
+                return new Position(intval($pos[0]), intval($pos[1]), intval($pos[2]), $level);
             }
             else {
                 $this->plugin->getLogger()->critical("Couldn't parse {$this->name} kingdom home position due the level {$pos[3]} isn't valid! (Maybe it's not loaded?)");
@@ -209,6 +209,27 @@ class Kingdom {
     }
 
     /**
+     * Add kingdom points
+     *
+     * @param int $points
+     */
+    public function addPoints($points) {
+        $this->points += $points;
+    }
+
+    /**
+     * Remove kingdom points
+     *
+     * @param $points
+     */
+    public function removePoints($points) {
+        $this->points -= $points;
+        if($this->points < 0) {
+            $this->points = 0;
+        }
+    }
+
+    /**
      * Set kingdom motto
      *
      * @param string $motto
@@ -259,7 +280,7 @@ class Kingdom {
      * @param null|string $name
      */
     public function setLeader($name) {
-        $this->leader = $name;
+        $this->leader = strtolower($name);
     }
 
     /**

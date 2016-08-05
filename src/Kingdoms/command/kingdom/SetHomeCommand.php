@@ -24,8 +24,13 @@ class SetHomeCommand extends SubCommand implements KingdomSubCommand {
         if($sender instanceof KingdomsPlayer) {
             if($sender->isAdmin()) {
                 if($sender->gotKingdom()) {
-                    $sender->getKingdom()->setHomePosition($sender->getPosition());
-                    $sender->sendKingdomMessage("KINGDOM_SET_SUCCESS");
+                    if(in_array($sender->getLevel()->getName(), $this->getPlugin()->getConfig()->get("home-maps"))) {
+                        $sender->getKingdom()->setHomePosition($sender->getPosition());
+                        $sender->sendKingdomMessage("KINGDOM_SET_SUCCESS");
+                    }
+                    else {
+                        $sender->sendKingdomMessage("KINGDOM_SETHOME_FAILED_BY_MAP");
+                    }
                 }
                 else {
                     $sender->sendKingdomMessage("KINGDOM_SETHOME_FAILED_BY_KINGDOM");

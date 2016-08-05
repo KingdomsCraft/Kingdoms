@@ -49,7 +49,7 @@ class UpdateKingdomRequest extends MySQLRequest {
      */
     public function __construct(KingdomDatabase $database, $data) {
         parent::__construct($database->getCredentials());
-        $this->name = $data["home"];
+        $this->name = $data["name"];
         $this->points = $data["points"];
         $this->motto = $data["motto"];
         $this->lostWars = $data["lostWars"];
@@ -65,7 +65,7 @@ class UpdateKingdomRequest extends MySQLRequest {
         }
         else {
             $leader = (empty($this->leader)) ? '' : strtolower($this->leader);
-            $database->query("\nUPDATE kingdoms SET name='{$database->escape_string($this->name)}, points='{$this->points}', motto='{$database->escape_string($this->motto)}', lostWars={$this->lostWars}, wonWars={$this->wonWars}, home='{$database->escape_string($this->home)}, leader='{$leader}' WHERE name='{$database->escape_string($this->name)}'");
+            $database->query("\nUPDATE kingdoms SET name='{$database->escape_string($this->name)}', points='{$this->points}', motto='{$database->escape_string($this->motto)}', lostWars='{$this->lostWars}', wonWars='{$this->wonWars}', home='{$database->escape_string($this->home)}', leader='{$leader}' WHERE name='{$database->escape_string($this->name)}'");
             if($database->affected_rows > 0) {
                 $this->setResult([self::MYSQL_SUCCESS]);
             }
@@ -86,7 +86,7 @@ class UpdateKingdomRequest extends MySQLRequest {
                     throw new \RuntimeException($result[1]);
                     break;
                 case self::MYSQL_ERROR:
-                    $server->getLogger()->info("Couldn't execute UpdateKingdomRequest due unknown error!");
+                    $server->getLogger()->info("Couldn't execute UpdateKingdomRequest due unknown error! (or nothing to update!)");
                     break;
                 case self::MYSQL_SUCCESS:
                     $server->getLogger()->info("Kingdom {$this->name} was successfully updated!");

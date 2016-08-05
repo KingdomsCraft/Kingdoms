@@ -22,7 +22,7 @@ class TopCommand extends SubCommand implements KingdomSubCommand {
      */
     public function execute(CommandSender $sender, $args) {
         if($sender instanceof KingdomsPlayer) {
-            if(isset($args[0])) {
+            if(isset($args[0]) and !empty($args[0])) {
                 $page = (int)$args[0];
                 if(!$page > 0) {
                     $page = 1;

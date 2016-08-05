@@ -108,6 +108,7 @@ class LoginPlayerRequest extends MySQLRequest {
                             }
                         }
                         $player->setAdmin($row["admin"] ? true : false);
+                        $player->setLeader($row["leader"] ? true : false);
                         $server->getLogger()->info("LoginPlayerRequest successfully executed with {$this->name}");
                         break;
                 }

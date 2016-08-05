@@ -23,9 +23,10 @@ class JoinCommand extends SubCommand implements KingdomSubCommand {
     public function execute(CommandSender $sender, $args) {
         if($sender instanceof KingdomsPlayer) {
             if(!$sender->gotKingdom()) {
-                if(isset($args[0])) {
+                if(isset($args[0]) and !empty($args[0])) {
                     $kingdomManager = $this->getPlugin()->getKingdomManager();
                     if($kingdomManager->isKingdom($args[0])) {
+                        $sender->setKingdomRank(0);
                         $sender->setKingdom($kingdomManager->getKingdom($args[0]));
                         $sender->sendKingdomMessage("KINGDOM_JOIN_SUCCESS");
                     }

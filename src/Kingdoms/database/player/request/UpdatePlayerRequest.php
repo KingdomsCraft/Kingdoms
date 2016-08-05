@@ -61,7 +61,7 @@ class UpdatePlayerRequest extends MySQLRequest {
                         $kingdom = ($player->gotKingdom()) ? $player->getKingdom()->getName() : '';
                         $guild = ($player->gotGuild()) ? $player->getGuild()->getName() : '';
                         $admin = ($player->isAdmin()) ? 1 : 0;
-                        $database->query("\nUPDATE kingdoms_players SET kingdom='{$database->escape_string($kingdom)}',kingdomRank={$player->getKingdomRank()},admin={$admin},guild='{$database->escape_string($guild)}' WHERE name='{$database->escape_string($this->name)}'");
+                        $database->query("\nUPDATE kingdoms_players SET kingdom='{$database->escape_string($kingdom)}',kingdomRank='{$player->getKingdomRank()}',admin='{$admin}',guild='{$database->escape_string($guild)}' WHERE name='{$database->escape_string($this->name)}'");
                         if($database->affected_rows > 0) {
                             $server->getLogger()->info("UpdatePlayerRequest was successfully executed with {$this->name}");
                         }

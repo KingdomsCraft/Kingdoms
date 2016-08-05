@@ -10,6 +10,7 @@ namespace Kingdoms\database\guild;
 
 use Kingdoms\database\guild\request\InitDatabaseRequest;
 use Kingdoms\database\guild\request\InitGuildRequest;
+use Kingdoms\database\guild\request\RegisterGuildRequest;
 use Kingdoms\database\guild\request\UpdateGuildRequest;
 use Kingdoms\database\mysql\MySQLDatabase;
 use Kingdoms\database\mysql\MySQLUpdate;
@@ -48,6 +49,18 @@ class GuildDatabase extends MySQLDatabase {
      */
     public function updateGuild(Guild $guild) {
         $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new UpdateGuildRequest($this, $guild->getData()));
+    }
+
+    /**
+     * Register a guild
+     *
+     * @param string $name
+     * @param string $motto
+     * @param string $kingdom
+     * @param string $leader
+     */
+    public function registerGuild($name, $motto, $kingdom, $leader) {
+        $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new RegisterGuildRequest($this, $name, $motto, $kingdom, $leader));
     }
 
 }

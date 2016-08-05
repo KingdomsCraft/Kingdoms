@@ -76,4 +76,14 @@ class KingdomManager {
     public function registerKingdom($name, $points, $motto, $lostWars, $wonWars, $home, $leader) {
         $this->kingdoms[$name] = new Kingdom($this->plugin, $name, $points, $motto, $lostWars, $wonWars, $home, $leader);
     }
+
+    /**
+     * Delete a kingdom
+     *
+     * @param string $kingdom
+     */
+    public function deleteKingdom($kingdom) {
+        unset($this->kingdoms[$kingdom]);
+        $this->plugin->getPluginDatabase()->getKingdomDatabase()->deleteKingdom($kingdom);
+    }
 }

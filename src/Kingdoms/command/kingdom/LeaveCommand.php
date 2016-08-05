@@ -27,6 +27,7 @@ class LeaveCommand extends SubCommand implements KingdomSubCommand {
                 $config = $this->getPlugin()->getConfig()->getAll();
                 if($sender->isAdmin() or Economy::getInstance()->getGold($sender) >= (int)$config["leave-price"]) {
                     Economy::getInstance()->removeGold($sender);
+                    $sender->setKingdomRank(0);
                     $sender->sendKingdomMessage("LEAVE_SUCCESS");
                 }
                 else {
