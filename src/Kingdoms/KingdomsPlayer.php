@@ -10,6 +10,7 @@ namespace Kingdoms;
 
 use Kingdoms\language\LanguageManager;
 use Kingdoms\models\guild\Guild;
+use Kingdoms\models\Invitation;
 use Kingdoms\models\kingdom\Kingdom;
 use pocketmine\Player;
 
@@ -34,6 +35,12 @@ class KingdomsPlayer extends Player {
 
     /** @var bool */
     private $admin = false;
+
+    /** @var Invitation */
+    private $lastInvitation = null;
+
+    /** @var Invitation[] */
+    private $invitations = [];
 
     /**
      * Return player data
@@ -110,6 +117,49 @@ class KingdomsPlayer extends Player {
     }
 
     /**
+     * Return player last guild invitation
+     *
+     * @return Invitation
+     */
+    public function getLastInvitation() {
+        return $this->lastInvitation;
+    }
+
+    /**
+     * Return player invitations
+     *
+     * @return Invitation[]
+     */
+    public function getInvitations() {
+        return $this->invitations;
+    }
+
+    /**
+     * Check if a invitation exists
+     *
+     * @param Guild $guild
+     * @return bool
+     */
+    public function isInvitation(Guild $guild) {
+        return isset($this->invitations[$guild->getName()]);
+    }
+
+    /**
+     * Get an invitation from a guild
+     *
+     * @param Guild $guild
+     * @return Invitation|null
+     */
+    public function getInvitation(Guild $guild) {
+        if($this->isInvitation($guild)) {
+            return $this->invitations[$guild->getName()];
+        }
+        else {
+            return null;
+        }
+    }
+
+    /**
      * Return if the player is admin
      *
      * @return bool
@@ -170,6 +220,56 @@ class KingdomsPlayer extends Player {
      */
     public function setLeader($bool = true) {
         $this->leader = $bool;
+    }
+
+    /**
+     * Set the last invitation
+     *
+     * @param Invitation $invitation
+     */
+    public function setLastInvitation(Invitation $invitation) {
+        $this->lastInvitation = $invitation;
+    }
+
+    /**
+     * Add an invitation to the player
+     *
+     * @param KingdomsPlayer $sender
+     * @param Guild $guild
+     */
+    public function addInvitation(KingdomsPlayer $sender, Guild $guild) {
+        $invitation = new Invitation($sender, $this, $guild);
+        $this->invitations[$guild->getName()] = $invitation;
+        $this->setLastInvitation($invitation);
+    }
+
+    /**
+     * Cancel an invitation
+     *
+     * @param Invitation $invitation
+     * @return bool
+     */
+    public function cancelInvitation(Invitation $invitation) {
+        if($this->isInvitation($invitation->getGuild())) {
+            unset($this->invitations[$invitation->getGuild()->getName()]);
+            $this->reloadInvitations();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * Reload all invitations
+     */
+    public function reloadInvitations() {
+        $times = [];
+        foreach($this->invitations as $invitation) {
+            $times[(int)round(microtime(true) - $invitation->getSentTime())] = $invitation ;
+        }
+        ksort($times);
+        $this->lastInvitation = (isset($times[0])) ? $times[0] : null;
     }
 
     /**

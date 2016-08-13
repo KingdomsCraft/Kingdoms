@@ -7,20 +7,22 @@
     <orderEntry type="module-library">
       <library name="PHARS">
         <CLASSES>
-          <root url="phar://$MODULE_DIR$/../../../../Projects/Path/PocketMine-MP.phar/" />
+          <root url="phar://$MODULE_DIR$/../../../../../Projects/Path/PocketMine-MP.phar/" />
+          <root url="phar://$MODULE_DIR$/../../../../../Projects/Path/Components-master/Components-master/bin/Components_v0.0.1_ALPHA.phar/" />
         </CLASSES>
         <SOURCES>
-          <root url="phar://$MODULE_DIR$/../../../../Projects/Path/PocketMine-MP.phar/" />
+          <root url="phar://$MODULE_DIR$/../../../../../Projects/Path/PocketMine-MP.phar/" />
+          <root url="phar://$MODULE_DIR$/../../../../../Projects/Path/Components-master/Components-master/bin/Components_v0.0.1_ALPHA.phar/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library name="PHP">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../../../../Projects/Path" />
+          <root url="file://$MODULE_DIR$/../../../../../Projects/Path" />
         </CLASSES>
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../../../../Projects/Path" />
+          <root url="file://$MODULE_DIR$/../../../../../Projects/Path" />
         </SOURCES>
       </library>
     </orderEntry>

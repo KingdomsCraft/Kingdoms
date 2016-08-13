@@ -193,6 +193,22 @@ class Guild {
     }
 
     /**
+     * Return online players by guild
+     *
+     * @return KingdomsPlayer[]
+     */
+    public function getOnlinePlayers() {
+        $players = [];
+        /** @var KingdomsPlayer $player */
+        foreach($this->plugin->getServer()->getOnlinePlayers() as $player) {
+            if($player->getGuild() == $this) {
+                $players[] = $player;
+            }
+        }
+        return $player;
+    }
+
+    /**
      * Set guild name
      *
      * @param string $name
@@ -226,6 +242,27 @@ class Guild {
      */
     public function setRubies($amount) {
         $this->vault = $amount;
+    }
+
+    /**
+     * Add rubies to the vault
+     *
+     * @param int $amount
+     */
+    public function addRubies($amount) {
+        $this->vault += $amount;
+    }
+
+    /**
+     * Remove guild rubies from the vault
+     *
+     * @param int $amount
+     */
+    public function removeRubies($amount) {
+        $this->vault -= $amount;
+        if($this->vault < 0) {
+            $this->vault = 0;
+        }
     }
 
     /**

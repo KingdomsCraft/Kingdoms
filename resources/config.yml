@@ -11,4 +11,19 @@ leave-price: 25
 # Maps were you can set kingdom homes
 home-maps:
 - "Forest"
+# Price by create a guild (in gold)
+guild-create-price: 50
+# Min level to create a guild
+guild-create-level: 8
+# The min level that THE RECEIVER must be to get the invitation
+guild-invite-level: 2
+# Levels where the guilds can set their homes
+guild-sethome-levels:
+- "Guild"
+# Buy assassin class price
+assassin-class-price: 400
+# Buy farmer class price
+farmer-class-price: 400
+# Buy warrior class price
+warrior-class-price: 400
 ...

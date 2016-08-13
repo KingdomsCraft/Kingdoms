@@ -8,6 +8,7 @@
 
 namespace Kingdoms\database\guild;
 
+use Kingdoms\database\guild\request\DeleteGuildRequest;
 use Kingdoms\database\guild\request\InitDatabaseRequest;
 use Kingdoms\database\guild\request\InitGuildRequest;
 use Kingdoms\database\guild\request\RegisterGuildRequest;
@@ -61,6 +62,33 @@ class GuildDatabase extends MySQLDatabase {
      */
     public function registerGuild($name, $motto, $kingdom, $leader) {
         $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new RegisterGuildRequest($this, $name, $motto, $kingdom, $leader));
+    }
+
+    /**
+     * Delete a guild
+     *
+     * @param string $name
+     */
+    public function deleteGuild($name) {
+        $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new DeleteGuildRequest($this, $name));
+    }
+
+    public function isFree($guild) {
+        $guild = strtoupper($guild);
+        $database = $this->getCredentials()->getDatabase();
+        $result = $database->query("SELECT COUNT(*) as amount FROM guilds WHERE guild='{$database->escape_string($guild)}'");
+        if($result instanceof \mysqli_result) {
+            $row = $result->fetch_assoc();
+            $result->free();
+            if(is_array($row)) {
+                return (int) $row["amount"] <= 3;
+            }
+            else {
+                return true;
+            }
+        }
+        $database->close();
+        return false;
     }
 
 }

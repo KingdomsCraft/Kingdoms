@@ -8,12 +8,12 @@
 
 namespace Kingdoms\command\guild;
 
-use Kingdoms\command\kingdom\KingdomSubCommand;
 use Kingdoms\command\SubCommand;
 use Kingdoms\KingdomsPlayer;
+use kingdomscraft\economy\Economy;
 use pocketmine\command\CommandSender;
 
-class CreateCommand extends SubCommand implements KingdomSubCommand {
+class CreateCommand extends SubCommand implements GuildSubCommand {
 
     /**
      * Execute create command
@@ -33,15 +33,28 @@ class CreateCommand extends SubCommand implements KingdomSubCommand {
                             $sender->sendKingdomMessage("GUILD_CREATE_FAILED_BY_NAME");
                         }
                         else {
-                            if(isset($args[1]) and !empty($args[1])) {
-                                $motto = $args;
-                                unset($motto[0]);
-                                $motto = implode(" ", $motto);
+                            $economy = Economy::getInstance();
+                            if($economy->getLevel($sender) >= (int)$this->getPlugin()->getConfig()->get("guild-create-level")) {
+                                if($economy->getRubies($sender) >= (int)$this->getPlugin()->getConfig()->get("guild-create-price")) {
+                                    $economy->removeRubies($sender, (int)$this->getPlugin()->getConfig()->get("guild-create-price"));
+                                    if(isset($args[1]) and !empty($args[1])) {
+                                        $motto = $args;
+                                        unset($motto[0]);
+                                        $motto = implode(" ", $motto);
+                                    }
+                                    else {
+                                        $motto = "This is my amazing guild!";
+                                    }
+                                    $this->getPlugin()->getPluginDatabase()->getGuildDatabase()->registerGuild($args[0], $motto, $sender->getKingdom()->getName(), $sender->getName());
+                                    $sender->sendKingdomMessage("GUILD_CREATE_SUCCESS");
+                                }
+                                else {
+                                    $sender->sendKingdomMessage("GUILD_CREATE_FAILED_BY_MONEY");
+                                }
                             }
                             else {
-                                $motto = "This is my amazing guild!";
+                                $sender->sendKingdomMessage("GUILD_CREATE_FAILED_BY_LEVEL");
                             }
-                            $this->getPlugin()->getPluginDatabase()->getGuildDatabase()->registerGuild($args[0], $motto, $sender->getKingdom()->getName(), $sender->getName());
                         }
                     }
                     else {
