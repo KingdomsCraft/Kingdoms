@@ -8,7 +8,12 @@
 
 namespace Kingdoms\command;
 
+use Kingdoms\command\guild\AcceptCommand;
+use Kingdoms\command\guild\DisbandCommand;
 use Kingdoms\command\guild\GuildSubCommand;
+use Kingdoms\command\guild\InviteCommand;
+use Kingdoms\command\guild\KickCommand;
+use Kingdoms\command\guild\VaultCommand;
 use Kingdoms\command\kingdom\AddPointsByPlayerNameCommand;
 use Kingdoms\command\kingdom\AddPointsCommand;
 use Kingdoms\command\kingdom\BroadcastCommand;
@@ -105,6 +110,15 @@ class CommandManager {
         $this->guildCommand = new GuildCommand($this);
         $this->guildCommands["help"] = new GuildHelpCommand($this);
         $this->guildCommands["create"] = new GuildCreateCommand($this);
+        $this->guildCommands["accept"] = new AcceptCommand($this);
+        $this->guildCommands["disband"] = new DisbandCommand($this);
+        $this->guildCommands["home"] = new \Kingdoms\command\guild\HomeCommand($this);
+        $this->guildCommands["invite"] = new InviteCommand($this);
+        $this->guildCommands["kick"] = new KickCommand($this);
+        $this->guildCommands["leave"] = new \Kingdoms\command\guild\LeaveCommand($this);
+        $this->guildCommands["motto"] = new \Kingdoms\command\guild\MottoCommand($this);
+        $this->guildCommands["sethome"] = new \Kingdoms\command\guild\SetHomeCommand($this);
+        $this->guildCommands["vault"] = new VaultCommand($this);
     }
 
     /**

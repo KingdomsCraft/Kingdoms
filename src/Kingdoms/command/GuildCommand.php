@@ -42,6 +42,33 @@ class GuildCommand extends Command {
                 case "create":
                     $this->commandManager->guild_execute("create", $sender, $args);
                     break;
+                case "class":
+                    $this->commandManager->guild_execute("class", $sender, $args);
+                    break;
+                case "disband":
+                    $this->commandManager->guild_execute("disband", $sender, $args);
+                    break;
+                case "home":
+                    $this->commandManager->guild_execute("home", $sender, $args);
+                    break;
+                case "sethome":
+                    $this->commandManager->guild_execute("sethome", $sender, $args);
+                    break;
+                case "kick":
+                    $this->commandManager->guild_execute("kick", $sender, $args);
+                    break;
+                case "leave":
+                    $this->commandManager->guild_execute("leave", $sender, $args);
+                    break;
+                case "motto":
+                    $this->commandManager->guild_execute("motto", $sender, $args);
+                    break;
+                case "vault":
+                    $this->commandManager->guild_execute("vault", $sender, $args);
+                    break;
+                case "invite":
+                    $this->commandManager->guild_execute("invite", $sender, $args);
+                    break;
                 default:
                     if($sender instanceof KingdomsPlayer) {
                         $sender->sendKingdomMessage("GUILD_COMMAND_USAGE");
