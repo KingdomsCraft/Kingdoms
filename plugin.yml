@@ -1,6 +1,9 @@
 name: Kingdoms
-author: AndrewBit
+authors:
+  - "Jack Noordhuis"
 website: http://kingdomscraft.net
-main: Kingdoms\Main
-version: "0.0.2-dev#02"
-api: [2.0.0]
+main: \kingdoms\Main
+version: 0.0.2_ALPHA_DEV#0
+api:
+  - 1.0.0
+  - 2.0.0
